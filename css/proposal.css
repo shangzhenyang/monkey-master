@@ -16,3 +16,8 @@ li {
 	line-height: 2;
 	margin: 15px 0;
 }
+
+p{
+	line-height: 2;
+	text-indent: 2em;
+}
