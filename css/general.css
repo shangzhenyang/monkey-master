@@ -1,0 +1,182 @@
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	--theme-color: darkorange;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+body {
+	color: white;
+	margin: 0;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+body::before {
+	background-image: url(../img/bg.jpg);
+	content: "";
+	height: 100%;
+	left: 0;
+	opacity: .2;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+header {
+	background-color: var(--theme-color);
+}
+
+header h1 {
+	display: inline-block;
+	font-size: 24px;
+	height: 50px;
+	line-height: 50px;
+	margin: 15px 0;
+	position: absolute;
+}
+
+h2 {
+	color: var(--theme-color);
+	margin: 0;
+	padding: 10px;
+}
+
+main {
+	padding: 15px;
+}
+
+nav a {
+	--radius: 10px;
+	border-top-left-radius: var(--radius);
+	border-top-right-radius: var(--radius);
+	cursor: pointer;
+	display: inline-block;
+	margin: 10px 10px 0;
+	padding: 10px 15px;
+	text-decoration: none;
+	transition: all .25s;
+}
+
+nav a:hover {
+	background-color: rgba(255,255,255,.2);
+}
+
+nav a.selected,
+nav a:active {
+	background-color: white;
+	color: var(--theme-color);
+}
+
+ul {
+	margin: 0;
+	padding-inline-start: 0;
+}
+
+.card {
+	border: 1px solid rgba(0,0,0,.2);
+	border-radius: 10px;
+	display: inline-block;
+	margin: 5px;
+	padding: 15px;
+	transition: opacity .25s;
+	width: 200px;
+}
+
+.card:hover,
+.floating-btn:hover {
+	opacity: .8;
+}
+
+.card:active,
+.floating-btn:active {
+	opacity: .6;
+}
+
+.card:nth-child(5n + 1) {
+	background-color: #E74C3C;
+}
+
+.card:nth-child(5n + 2) {
+	background-color: darkorange;
+}
+
+.card:nth-child(5n + 3) {
+	background-color: #229954;
+}
+
+.card:nth-child(5n + 4) {
+	background-color: #2E86C1;
+}
+
+.card:nth-child(5n + 5) {
+	background-color: #7D3C98;
+}
+
+.card-content img {
+	height: 20px;
+}
+
+.card-title {
+	margin: 0;
+}
+
+.floating-btn {
+	--margin: 30px;
+	--size: 50px;
+	background-color: var(--theme-color);
+	border: none;
+	border-radius: 50%;
+	box-shadow: 0 0 5px rgba(0,0,0,.2);
+	bottom: var(--margin);
+	color: inherit;
+	cursor: pointer;
+	font-size: 24px;
+	height: var(--size);
+	line-height: var(--size);
+	position: fixed;
+	transition: opacity .25s;
+	right: var(--margin);
+	width: var(--size);
+}
+
+.logo {
+	--size: 50px;
+	border-radius: 5px;
+	margin: 15px 15px 0;
+	height: var(--size);
+	width: var(--size);
+}
+
+.progress {
+	text-align: right;
+}
+
+.word-of-day {
+	background-color: orange;
+	border: 1px solid rgba(0,0,0,.2);
+	border-radius: 10px;
+	margin: 5px;
+	padding: 15px;
+	text-align: center;
+}
+
+.word-of-day .word {
+	font-size: 24px;
+	margin: 0 0 10px;
+}
+
+@media (max-width: 450px) {
+	.card {
+		display: block;
+		margin: 5px;
+		width: auto;
+	}
+}
