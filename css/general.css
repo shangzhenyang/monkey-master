@@ -66,7 +66,7 @@ nav a {
 }
 
 nav a:hover {
-	background-color: rgba(255,255,255,.2);
+	background-color: rgba(255, 255, 255, .2);
 }
 
 nav a.selected,
@@ -81,7 +81,7 @@ ul {
 }
 
 .card {
-	border: 1px solid rgba(0,0,0,.2);
+	border: 1px solid rgba(0, 0, 0, .2);
 	border-radius: 10px;
 	display: inline-block;
 	margin: 5px;
@@ -134,7 +134,7 @@ ul {
 	background-color: var(--theme-color);
 	border: none;
 	border-radius: 50%;
-	box-shadow: 0 0 5px rgba(0,0,0,.2);
+	box-shadow: 0 0 5px rgba(0, 0, 0, .2);
 	bottom: var(--margin);
 	color: inherit;
 	cursor: pointer;
@@ -161,7 +161,7 @@ ul {
 
 .word-of-day {
 	background-color: orange;
-	border: 1px solid rgba(0,0,0,.2);
+	border: 1px solid rgba(0, 0, 0, .2);
 	border-radius: 10px;
 	margin: 5px;
 	padding: 15px;
@@ -179,4 +179,45 @@ ul {
 		margin: 5px;
 		width: auto;
 	}
+}
+
+
+.wordlist-nav-button {
+	height: 80px;
+	width: 100px;
+	display: inline-block;
+	background-color: orange;
+	border-radius: 20px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.23);
+	margin: 0 4rem;
+	line-height: 80px;
+	text-align: center;
+}
+
+
+.wordlist-nav-row {
+	margin: 0 auto;
+	padding-inline-start: 0;
+	width: fit-content;
+}
+
+
+/* from Alibaba */
+
+.iconA {
+	font-size: 40px;
+	font-family: 'iconfont';
+}
+
+.iconArrow {
+	font-size: 30px;
+	font-family: 'iconfont';
+}
+
+@font-face {
+	font-family: 'iconfont';
+	/* Project id 3355937 */
+	src: url('https://at.alicdn.com/t/font_3355937_zltrxvwojpm.woff2?t=1650847222081') format('woff2'),
+		url('https://at.alicdn.com/t/font_3355937_zltrxvwojpm.woff?t=1650847222081') format('woff'),
+		url('https://at.alicdn.com/t/font_3355937_zltrxvwojpm.ttf?t=1650847222081') format('truetype');
 }
