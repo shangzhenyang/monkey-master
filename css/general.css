@@ -69,7 +69,7 @@ nav a {
 }
 
 nav a:hover {
-	background-color: rgba(255,255,255,.2);
+	background-color: rgba(255, 255, 255, .2);
 }
 
 nav a.selected,
@@ -84,7 +84,7 @@ ul {
 }
 
 .card {
-	border: 1px solid rgba(0,0,0,.2);
+	border: 1px solid rgba(0, 0, 0, .2);
 	border-radius: 10px;
 	display: inline-block;
 	margin: 5px;
@@ -137,7 +137,7 @@ ul {
 	background-color: var(--theme-color);
 	border: none;
 	border-radius: 50%;
-	box-shadow: 0 0 5px rgba(0,0,0,.2);
+	box-shadow: 0 0 5px rgba(0, 0, 0, .2);
 	bottom: var(--margin);
 	color: inherit;
 	cursor: pointer;
@@ -164,7 +164,7 @@ ul {
 
 .word-of-day {
 	background-color: orange;
-	border: 1px solid rgba(0,0,0,.2);
+	border: 1px solid rgba(0, 0, 0, .2);
 	border-radius: 10px;
 	margin: 5px;
 	padding: 15px;
@@ -183,7 +183,6 @@ ul {
 		width: auto;
 	}
 }
-
 @import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Yatra+One&display=swap');
 
 .wrapper{
@@ -243,5 +242,4 @@ ul {
 
 .wrapper .team .member p{
 	margin-top: 15px;
-    font-size: 14px;
-}
+   
