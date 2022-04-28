@@ -201,25 +201,15 @@ ul {
 	width: 100%;
 	height: 190px;
 	margin: 0 auto;
-	border-radius: 50%;
 	padding: 5px;
 	position: relative;
 }
 
-.avatar.zefan-lu {
-	background-image: url(../img/member/zefan-lu.png);
-}
-
-.avatar.shanglin-zeng {
-	background-image: url(../img/member/shanglin-zeng.png);
-}
-
-.avatar.shangzhen-yang {
-	background-image: url(../img/member/shangzhen-yang.png);
-}
-
-.avatar.geyang-xu {
-	background-image: url(../img/member/geyang-xu.jpg);
+.avatar img {
+	border-radius: 50%;
+	height: 100%;
+	object-fit: cover;
+	width: 100%;
 }
 
 .about h1 {
@@ -260,6 +250,7 @@ ul {
 
 
 .wordlist-nav-row {
+	cursor: pointer;
 	margin: 0 auto;
 	padding-inline-start: 0;
 	width: fit-content;
