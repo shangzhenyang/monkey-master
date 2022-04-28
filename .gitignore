@@ -3,4 +3,5 @@ node_modules
 
 # ignore OS generated files
 .DS_Store
+.Rhistory
 Thumbs.db
