@@ -185,6 +185,7 @@ ul {
 	display: flex;
 	width: auto;
 	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .about .team .member {
