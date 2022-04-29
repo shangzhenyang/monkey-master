@@ -257,6 +257,24 @@ ul {
 	width: fit-content;
 }
 
+.wordCards {
+	display: flex;
+	background-color: orange;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 10px;
+	margin: 10px;
+	padding: 15px;
+}
+
+.text {
+	font-size: 30px;
+	color: white;
+	margin: 0.5rem;
+}
+
+.words {
+	margin:auto;
+}
 
 /* from Alibaba */
 
@@ -270,13 +288,19 @@ ul {
 	font-family: 'iconfont';
 }
 
-@font-face {
+.iconCard {
+	font-size: 35px;
 	font-family: 'iconfont';
-	/* Project id 3355937 */
-	src: url('https://at.alicdn.com/t/font_3355937_zltrxvwojpm.woff2?t=1650847222081') format('woff2'),
-		url('https://at.alicdn.com/t/font_3355937_zltrxvwojpm.woff?t=1650847222081') format('woff'),
-		url('https://at.alicdn.com/t/font_3355937_zltrxvwojpm.ttf?t=1650847222081') format('truetype');
-}
+	margin: 10px;
+	cursor: pointer;
+} 
+
+@font-face {
+	font-family: 'iconfont';  /* Project id 3355937 */
+	src: url('https://at.alicdn.com/t/font_3355937_8vcf3rcfz2i.woff2?t=1651194005088') format('woff2'),
+		 url('https://at.alicdn.com/t/font_3355937_8vcf3rcfz2i.woff?t=1651194005088') format('woff'),
+		 url('https://at.alicdn.com/t/font_3355937_8vcf3rcfz2i.ttf?t=1651194005088') format('truetype');
+  }
 
 @media (max-width: 950px) {
 	.wordlist-nav-button {
@@ -294,5 +318,14 @@ ul {
 	.wordlist-nav-button {
 		margin: 0;
 		width: 80px;
+	}
+
+	.wordCards {
+		display: block;
+		background-color: orange;
+		border: 1px solid rgba(0, 0, 0, .2);
+		border-radius: 10px;
+		margin: 10px;
+		padding: 15px;
 	}
 }
