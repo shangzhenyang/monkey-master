@@ -33,6 +33,15 @@ body::before {
 	z-index: -1;
 }
 
+footer {
+	background-color: var(--theme-color);
+	bottom: 0;
+	left: 0;
+	padding: 10px 15px;
+	position: fixed;
+	width: 100%;
+}
+
 header {
 	background-color: var(--theme-color);
 }
@@ -53,7 +62,7 @@ h2 {
 }
 
 main {
-	padding: 15px;
+	padding: 15px 15px 55px;
 }
 
 nav a {
@@ -86,11 +95,11 @@ ul {
 .card {
 	border: 1px solid rgba(0, 0, 0, .2);
 	border-radius: 10px;
-	display: inline-block;
 	margin: 5px;
 	padding: 15px;
 	transition: opacity .25s;
-	width: 200px;
+	display: block;
+	width: auto;
 }
 
 .card:hover,
@@ -132,13 +141,12 @@ ul {
 }
 
 .floating-btn {
-	--margin: 30px;
 	--size: 50px;
 	background-color: var(--theme-color);
 	border: none;
 	border-radius: 50%;
 	box-shadow: 0 0 5px rgba(0, 0, 0, .2);
-	bottom: var(--margin);
+	bottom: 70px;
 	color: inherit;
 	cursor: pointer;
 	font-size: 24px;
@@ -146,7 +154,7 @@ ul {
 	line-height: var(--size);
 	position: fixed;
 	transition: opacity .25s;
-	right: var(--margin);
+	right: 30px;
 	width: var(--size);
 }
 
@@ -239,14 +247,15 @@ ul {
 
 .wordlist-nav-button {
 	height: 80px;
-	width: 100px;
 	display: inline-block;
 	background-color: orange;
 	border-radius: 20px;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.23);
-	margin: 0 4rem;
 	line-height: 80px;
 	text-align: center;
+
+	margin: 0;
+	width: 80px;
 }
 
 
@@ -257,10 +266,10 @@ ul {
 	width: fit-content;
 }
 
-.wordCards {
-	display: flex;
+.word-cards {
 	background-color: orange;
 	border: 1px solid rgba(0, 0, 0, .2);
+	display: block;
 	border-radius: 10px;
 	margin: 10px;
 	padding: 15px;
@@ -273,7 +282,32 @@ ul {
 }
 
 .words {
-	margin:auto;
+	margin: auto;
+}
+
+form {
+	margin: 30px auto;
+	max-width: 500px;
+}
+
+label,
+input {
+	display: block;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	color: black;
+	padding: 10px 15px;
+}
+
+label {
+	padding-right: 10px;
+	background-color: orange;
+	color: white;
+}
+
+input {
+	border: 1px solid rgba(0, 0, 0, .2);
+	width: 100%;
 }
 
 /* from Alibaba */
@@ -293,39 +327,42 @@ ul {
 	font-family: 'iconfont';
 	margin: 10px;
 	cursor: pointer;
-} 
+}
 
 @font-face {
-	font-family: 'iconfont';  /* Project id 3355937 */
+	font-family: 'iconfont';
+	/* Project id 3355937 */
 	src: url('https://at.alicdn.com/t/font_3355937_8vcf3rcfz2i.woff2?t=1651194005088') format('woff2'),
-		 url('https://at.alicdn.com/t/font_3355937_8vcf3rcfz2i.woff?t=1651194005088') format('woff'),
-		 url('https://at.alicdn.com/t/font_3355937_8vcf3rcfz2i.ttf?t=1651194005088') format('truetype');
-  }
+		url('https://at.alicdn.com/t/font_3355937_8vcf3rcfz2i.woff?t=1651194005088') format('woff'),
+		url('https://at.alicdn.com/t/font_3355937_8vcf3rcfz2i.ttf?t=1651194005088') format('truetype');
+}
 
-@media (max-width: 950px) {
+@media (min-width: 600px) {
+	.card {
+		display: inline-block;
+		margin: 5px;
+		width: 200px;
+	}
+
 	.wordlist-nav-button {
 		margin: 0 1rem;
+		width: 100px;
+	}
+
+	.word-cards {
+		display: flex;
 	}
 }
 
-@media (max-width: 600px) {
-	.card {
-		display: block;
-		margin: 5px;
-		width: auto;
-	}
-
+@media (min-width: 950px) {
 	.wordlist-nav-button {
-		margin: 0;
-		width: 80px;
+		margin: 0 4rem;
 	}
+}
 
-	.wordCards {
-		display: block;
-		background-color: orange;
-		border: 1px solid rgba(0, 0, 0, .2);
-		border-radius: 10px;
-		margin: 10px;
-		padding: 15px;
+@media (min-width: 2000px) {
+	.word-cards {
+		width: 1500px;
+		margin: 30px auto;
 	}
 }

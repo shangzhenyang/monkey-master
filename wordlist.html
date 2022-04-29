@@ -33,32 +33,47 @@
 			<li class="wordlist-nav-button" title="More options"><span class="iconA">&#xe73a;</span></li>
 		</ul>
 		<!--word list card items-->
-		<div class="wordCards"> 
+		<div class="word-cards"> 
 			<!--Card1-->
 			<div class="words"><h3 class="text">Hello</p></div>
 			<div class="words"><h3 class="text">你好</p></div>
-			<span class="iconCard">&#xe600;</span>
-			<span class="iconCard">&#xe601;</span>
-			<span class="iconCard">&#xe8b8;</span>
+			<span class="iconCard" title="bookmark">&#xe600;</span>
+			<span class="iconCard" title="Edit this card">&#xe601;</span>
+			<span class="iconCard" title="play">&#xe8b8;</span>
 		</div>
-		<div class="wordCards"> 
+		<div class="word-cards"> 
 			<!--Card2-->
 			<div class="words"><h3 class="text">Hello</p></div>
 			<div class="words"><h3 class="text">Bonjour</p></div>
-			<span class="iconCard">&#xe600;</span>
-			<span class="iconCard">&#xe601;</span>
-			<span class="iconCard">&#xe8b8;</span>
+			<span class="iconCard" title="bookmark">&#xe600;</span>
+			<span class="iconCard" title="Edit this card">&#xe601;</span>
+			<span class="iconCard" title="play">&#xe8b8;</span>
 		</div>
-		<div class="wordCards"> 
+		<div class="word-cards"> 
 			<!--Card3-->
 			<div class="words"><h3 class="text">Hello</p></div>
 			<div class="words"><h3 class="text">ciao</p></div>
-			<span class="iconCard">&#xe600;</span>
-			<span class="iconCard">&#xe601;</span>
-			<span class="iconCard">&#xe8b8;</span>
+			<span class="iconCard" title="bookmark">&#xe600;</span>
+			<span class="iconCard" title="Edit this card">&#xe601;</span>
+			<span class="iconCard" title="play">&#xe8b8;</span>
 		</div>
+		<form id="new-word-form" action="" method="get" class="form-template">
+			<div class="form-template">
+			  <label for="word">Enter the word: </label>
+			  <input type="text" name="word" id="word" required>
+			</div>
+			<div class="form-template">
+			  <label for="definition">Enter the definition for that word: </label>
+			  <input type="text" name="definition" id="definition" required>
+			</div>
+			<div class="form-template">
+			  <input type="submit" value="Confirm">
+			</div>
+		  </form>
+		  
 	</main>
-	<button class="floating-btn">+</button>
+	<a href="#new-word-form"><button class="floating-btn">+</button></a>
+	<footer>&copy; 2022 INFO 340 Group 14</footer>
 </body>
 
 </html>
