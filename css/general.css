@@ -87,6 +87,8 @@ nav a:active {
 	color: var(--theme-color);
 }
 
+/* Dashboard Page */
+
 ul {
 	margin: 0;
 	padding-inline-start: 0;
@@ -184,6 +186,8 @@ ul {
 	margin: 0 0 10px;
 }
 
+/* About Page */
+
 .about {
 	margin-top: 25px;
 	text-align: center;
@@ -245,6 +249,8 @@ ul {
 	margin-top: 15px;
 }
 
+/* Word List Page */
+
 .wordlist-nav-button {
 	height: 80px;
 	display: inline-block;
@@ -257,7 +263,6 @@ ul {
 	margin: 0;
 	width: 80px;
 }
-
 
 .wordlist-nav-row {
 	cursor: pointer;
@@ -275,7 +280,7 @@ ul {
 	padding: 15px;
 }
 
-.text {
+.word-cards .text {
 	font-size: 30px;
 	color: white;
 	margin: 0.5rem;
@@ -312,17 +317,17 @@ input {
 
 /* from Alibaba */
 
-.iconA {
+.icon {
 	font-size: 40px;
 	font-family: 'iconfont';
 }
 
-.iconArrow {
+.icon-arrow {
 	font-size: 30px;
 	font-family: 'iconfont';
 }
 
-.iconCard {
+.icon-card {
 	font-size: 35px;
 	font-family: 'iconfont';
 	margin: 10px;
