@@ -6,7 +6,10 @@ function Dashboard(props) {
 		<main>
 			<MyBananas lists={props.lists} />
 		</main>
-		<FloatingButton />
+		<FloatingButton
+			lists={props.lists}
+			setLists={props.setLists}
+		/>
 	</>
 }
 

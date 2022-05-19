@@ -248,6 +248,10 @@ ul {
 
 /* Word List Page */
 
+.wordlist-title {
+	cursor: pointer;
+}
+
 .wordlist-nav-button {
 	height: 80px;
 	display: inline-block;

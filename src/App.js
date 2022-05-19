@@ -7,43 +7,54 @@ import Footer from "./Footer"
 import Header from "./Header"
 import WordList from "./WordList"
 
-const WORD_LIST = [{
-	title: "Title 1",
-	words: [{
-		word: "hello",
-		definition: "你好"
-	}, {
-		word: "world",
-		definition: "世界"
-	}, {
-		word: "code",
-		definition: "代码"
-	}]
-}, {
-	title: "Title 2",
-	words: [{
-		word: "hello",
-		definition: "你好"
-	}, {
-		word: "world",
-		definition: "世界"
-	}]
-}]
-
 function App() {
+	const [lists, setLists] = useState(
+		JSON.parse(localStorage.getItem("wordLists")) || [{
+			title: "Title 1",
+			words: [{
+				word: "hello",
+				definition: "你好"
+			}, {
+				word: "world",
+				definition: "世界"
+			}, {
+				word: "code",
+				definition: "代码"
+			}]
+		}, {
+			title: "Title 2",
+			words: [{
+				word: "hello",
+				definition: "你好"
+			}, {
+				word: "world",
+				definition: "世界"
+			}]
+		}]
+	)
+	const saveLists = newLists => {
+		setLists(newLists)
+		localStorage.setItem("wordLists", JSON.stringify(newLists))
+	}
 	return <div className="App">
 		<BrowserRouter>
 			<Header navItems={["Dashboard", "About"]} />
 			<Routes>
 				<Route
 					path="/"
-					element={<Dashboard lists={WORD_LIST} />} />
+					element={<Dashboard
+						lists={lists}
+						setLists={saveLists}
+					/>} />
 				<Route
 					path="/about"
 					element={<About />} />
 				<Route
 					path="/wordlist/:index"
-					element={<WordList lists={WORD_LIST} />} />
+					element={<WordList
+						lists={lists}
+						setLists={saveLists}
+					/>} />
 			</Routes>
 		</BrowserRouter>
 		<Footer />

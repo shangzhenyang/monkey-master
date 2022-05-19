@@ -8,7 +8,8 @@ function MyBananas(props) {
 				<BananaCard
 					key={index}
 					index={index}
-					item={item} />
+					item={item}
+				/>
 			)}
 		</ul>
 	</>
