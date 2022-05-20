@@ -9,7 +9,16 @@ import WordList from "./WordList"
 
 function App() {
 	const [lists, setLists] = useState(
-		JSON.parse(localStorage.getItem("wordLists")) || [{
+		(() => {
+			try {
+				const result = JSON.parse(localStorage.getItem("wordLists"))
+				if (typeof result !== "object") {
+					throw new TypeError()
+				}
+			} catch {
+				return null
+			}
+		})() || [{
 			title: "Title 1",
 			words: [{
 				word: "hello",

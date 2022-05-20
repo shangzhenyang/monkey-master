@@ -1,15 +1,11 @@
 function WordCard(props) {
 	return <div className="word-card">
 
-
 		<div className="word">{props.word}</div>
-
 
 		<div className="word">{props.definition}</div>
 
-
 		<span className="icon-card" title="Bookmark">&#xe600;</span>
-
 
 		<span className="icon-card" title="Edit this card" onClick={() => {
 			const newWord = prompt(
@@ -29,8 +25,6 @@ function WordCard(props) {
 			props.onChange(newWord, newDefinition)
 		}}>&#xe601;</span>
 
-
-
 		<span className="icon-card" title="Play pronunciation" onClick={() => {
 			if (window.speechSynthesis) {
 				if (!onbeforeunload) {
@@ -45,10 +39,11 @@ function WordCard(props) {
 			}
 		}}>&#xe8b8;</span>
 
-
-		<span className="icon-card" title="delete">
-		
-		&#xe602;</span>
+		<span className="icon-card" title="Delete the word" onClick={() => {
+			if (window.confirm(`Are you sure that you want to delete the word "${props.word}"?`)) {
+				props.onDelete()
+			}
+		}}>&#xe602;</span>
 	</div>
 }
 

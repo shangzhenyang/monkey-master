@@ -5,20 +5,22 @@ import WordCard from "./WordCard"
 function WordList(props) {
 	const { index } = useParams()
 	const list = props.lists[index]
-	console.log(list);
 
-	//The function for adding new word
-	const AddVocab = (wordEle, defEle) => {
-        let newVocab = {
-            word: wordEle,
-			definition: defEle
-        }
+	const addWord = (newWord, newDefinition) => {
+		list.words.push({
+			word: newWord,
+			definition: newDefinition,
+		})
+		props.saveLists()
+		setTimeout(scrollToBottom, 100)
+	}
 
-        list.words.push(newVocab);
-		props.saveLists();
-    };
-
-
+	const scrollToBottom = () => {
+		window.scrollTo({
+			top: document.body.scrollHeight,
+			behavior: "smooth"
+		})
+	}
 
 	return <main>
 		<h2 className="wordlist-title" title="Change the title" onClick={() => {
@@ -30,7 +32,7 @@ function WordList(props) {
 			props.saveLists()
 		}}>{list.title}</h2>
 		<ul className="wordlist-nav-row">
-			<li className="wordlist-nav-button" title="Add new words"><span className="icon">&#xe624;</span></li>
+			<li className="wordlist-nav-button" title="Add new words" onClick={scrollToBottom}><span className="icon">&#xe624;</span></li>
 			<li className="wordlist-nav-button" title="Search for words"><span className="icon">&#xe8ba;</span></li>
 			<li className="wordlist-nav-button" title="Test your knowledge"><span className="icon">&#xe62f;</span></li>
 			<li className="wordlist-nav-button" title="More options"><span className="icon">&#xe73a;</span></li>
@@ -45,18 +47,14 @@ function WordList(props) {
 					item.definition = newDefinition
 					props.saveLists()
 				}}
+				onDelete={() => {
+					list.words.splice(index, 1)
+					props.saveLists()
+				}}
 			/>
 		)}
 
-
-
-
-		<AddWord addWordCallBack={AddVocab}/>
-
-
-
-
-
+		<AddWord addWordCallBack={addWord} />
 	</main>
 }
 
