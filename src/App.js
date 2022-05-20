@@ -13,7 +13,7 @@ function App() {
 			try {
 				const result = JSON.parse(localStorage.getItem("wordLists"))
 				if (typeof result !== "object") {
-					throw new TypeError()
+					throw new TypeError("Invalid data in localStorage")
 				}
 				return result
 			} catch (error) {
