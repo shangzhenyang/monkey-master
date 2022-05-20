@@ -169,18 +169,14 @@ ul {
 	width: var(--size);
 }
 
-.word-of-day {
+.status {
 	background-color: orange;
 	border: 1px solid rgba(0, 0, 0, .2);
 	border-radius: 10px;
+	font-size: 18px;
 	margin: 5px;
 	padding: 15px;
 	text-align: center;
-}
-
-.word-of-day .word {
-	font-size: 24px;
-	margin: 0 0 10px;
 }
 
 /* About Page */
@@ -349,6 +345,10 @@ input {
 		display: inline-block;
 		margin: 5px;
 		width: 200px;
+	}
+
+	.status {
+		font-size: 20px;
 	}
 
 	.wordlist-nav-button {

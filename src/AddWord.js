@@ -44,7 +44,7 @@ function AddWord(props) {
 				required></input>
 		</div>
 		<div className="form-template">
-			<label htmlFor="definition">Enter the definition for that word:</label>
+			<label htmlFor="definition">Enter the definition of the new word:</label>
 			<input type="text"
 				name="definition"
 				id="definition"
