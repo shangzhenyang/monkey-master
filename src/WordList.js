@@ -35,7 +35,9 @@ function WordList(props) {
 			<li className="wordlist-nav-button" title="Add new words" onClick={scrollToBottom}><span className="icon">&#xe624;</span></li>
 			<li className="wordlist-nav-button" title="Search for words"><span className="icon">&#xe8ba;</span></li>
 			<li className="wordlist-nav-button" title="Test your knowledge"><span className="icon">&#xe62f;</span></li>
-			<li className="wordlist-nav-button" title="More options"><span className="icon">&#xe73a;</span></li>
+			<li className="wordlist-nav-button" title="Import"><span className="icon">&#xe641;</span></li>
+			<li className="wordlist-nav-button" title="Export"><span className="icon">&#xe642;</span></li>
+			<li className="wordlist-nav-button" title="Delete this list"><span className="icon">&#xe603;</span></li>
 		</ul>
 		{list.words.map((item, index) =>
 			<WordCard
