@@ -5,11 +5,11 @@ import WordCard from "./WordCard"
 function WordList(props) {
 	const { index } = useParams()
 	const list = props.lists[index]
+	console.log(list);
 
 	//The function for adding new word
 	const AddVocab = (wordEle, defEle) => {
         let newVocab = {
-            id: list.words.length,
             word: wordEle,
 			definition: defEle
         }
