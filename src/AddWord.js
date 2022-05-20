@@ -19,7 +19,6 @@ function AddWord(props) {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		props.addWordCallBack(inputtedWord, inputtedDef);
-		console.log("submitting" + inputtedWord + " " + inputtedDef);
 	}
 
 
