@@ -337,12 +337,12 @@ input {
 }
 
 @font-face {
-	font-family: 'iconfont';
-	/* Project id 3355937 */
-	src: url('https://at.alicdn.com/t/font_3355937_8vcf3rcfz2i.woff2?t=1651194005088') format('woff2'),
-		url('https://at.alicdn.com/t/font_3355937_8vcf3rcfz2i.woff?t=1651194005088') format('woff'),
-		url('https://at.alicdn.com/t/font_3355937_8vcf3rcfz2i.ttf?t=1651194005088') format('truetype');
-}
+	font-family: 'iconfont';  /* Project id 3355937 */
+	src: url('https://at.alicdn.com/t/font_3355937_z4qc2nr5sd.woff2?t=1653054436236') format('woff2'),
+		 url('https://at.alicdn.com/t/font_3355937_z4qc2nr5sd.woff?t=1653054436236') format('woff'),
+		 url('https://at.alicdn.com/t/font_3355937_z4qc2nr5sd.ttf?t=1653054436236') format('truetype');
+  }
+
 
 @media (min-width: 600px) {
 	.card {
