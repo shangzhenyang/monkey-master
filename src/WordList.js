@@ -5,6 +5,21 @@ import WordCard from "./WordCard"
 function WordList(props) {
 	const { index } = useParams()
 	const list = props.lists[index]
+
+	//The function for adding new word
+	const AddVocab = (wordEle, defEle) => {
+        let newVocab = {
+            id: list.words.length,
+            word: wordEle,
+			definition: defEle
+        }
+
+        list.words.push(newVocab);
+		props.saveLists();
+    };
+
+
+
 	return <main>
 		<h2 className="wordlist-title" title="Change the title" onClick={() => {
 			const newTitle = prompt("Please enter a new title.")
@@ -32,9 +47,16 @@ function WordList(props) {
 				}}
 			/>
 		)}
-		<AddWord onAdd={() => {
 
-		}} />
+
+
+
+		<AddWord addWordCallBack={AddVocab}/>
+
+
+
+
+
 	</main>
 }
 
