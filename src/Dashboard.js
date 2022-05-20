@@ -8,7 +8,7 @@ function Dashboard(props) {
 		</main>
 		<FloatingButton
 			lists={props.lists}
-			setLists={props.setLists}
+			saveLists={props.saveLists}
 		/>
 	</>
 }

@@ -32,7 +32,8 @@ function App() {
 			}]
 		}]
 	)
-	const saveLists = newLists => {
+	const saveLists = () => {
+		const newLists = [...lists]
 		setLists(newLists)
 		localStorage.setItem("wordLists", JSON.stringify(newLists))
 	}
@@ -44,7 +45,7 @@ function App() {
 					path="/"
 					element={<Dashboard
 						lists={lists}
-						setLists={saveLists}
+						saveLists={saveLists}
 					/>} />
 				<Route
 					path="/about"
@@ -53,7 +54,7 @@ function App() {
 					path="/wordlist/:index"
 					element={<WordList
 						lists={lists}
-						setLists={saveLists}
+						saveLists={saveLists}
 					/>} />
 			</Routes>
 		</BrowserRouter>
