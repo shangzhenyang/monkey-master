@@ -15,7 +15,9 @@ function App() {
 				if (typeof result !== "object") {
 					throw new TypeError()
 				}
-			} catch {
+				return result
+			} catch (error) {
+				console.error(error)
 				return null
 			}
 		})() || [{
