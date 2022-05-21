@@ -332,13 +332,16 @@ input {
 	cursor: pointer;
 }
 
+[hidden] {
+	display: none !important;
+}
 
-  @font-face {
+@font-face {
 	font-family: 'iconfont';  /* Project id 3355937 */
 	src: url('https://at.alicdn.com/t/font_3355937_aw67i184jg.woff2?t=1653089051849') format('woff2'),
 		 url('https://at.alicdn.com/t/font_3355937_aw67i184jg.woff?t=1653089051849') format('woff'),
 		 url('https://at.alicdn.com/t/font_3355937_aw67i184jg.ttf?t=1653089051849') format('truetype');
-  }
+}
 
 
 @media (min-width: 600px) {

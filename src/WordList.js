@@ -6,13 +6,15 @@ function WordList(props) {
 	const { index } = useParams()
 	const list = props.lists[index]
 
-	const addWord = (newWord, newDefinition) => {
+	const addWord = (newWord, newDefinition, scroll = true) => {
 		list.words.push({
 			word: newWord,
 			definition: newDefinition,
 		})
 		props.saveLists()
-		setTimeout(scrollToBottom, 100)
+		if (scroll) {
+			setTimeout(scrollToBottom, 100)
+		}
 	}
 
 	const scrollToBottom = () => {
@@ -35,8 +37,30 @@ function WordList(props) {
 			<li className="wordlist-nav-button" title="Add new words" onClick={scrollToBottom}><span className="icon">&#xe624;</span></li>
 			<li className="wordlist-nav-button" title="Search for words"><span className="icon">&#xe8ba;</span></li>
 			<li className="wordlist-nav-button" title="Test your knowledge"><span className="icon">&#xe62f;</span></li>
-			<li className="wordlist-nav-button" title="Import"><span className="icon">&#xe641;</span></li>
-			<li className="wordlist-nav-button" title="Export"><span className="icon">&#xe642;</span></li>
+			<li className="wordlist-nav-button" title="Import as CSV" onClick={() => {
+				const fileInput = document.getElementById("file-input")
+				fileInput.value = ""
+				fileInput.click()
+			}}><span className="icon">&#xe641;</span></li>
+
+			<li className="wordlist-nav-button" title="Export as CSV" onClick={() => {
+				const encodeCsvValue = text =>
+					`"` + text.replaceAll(`"`, `""`) + `"`
+				let str = ""
+				for (const wordItem of list.words) {
+					if (str) {
+						str += "\n"
+					}
+					str += encodeCsvValue(wordItem.word) + "," +
+						encodeCsvValue(wordItem.definition)
+				}
+				const newA = document.createElement("a")
+				newA.href = "data:text/plain;charset=utf-8," +
+					encodeURIComponent("\uFEFF" + str)
+				newA.download = list.title + ".csv"
+				newA.click()
+			}}><span className="icon">&#xe642;</span></li>
+
 			<li className="wordlist-nav-button" title="Delete this list"><span className="icon">&#xe603;</span></li>
 		</ul>
 		{list.words.map((item, index) =>
@@ -57,6 +81,34 @@ function WordList(props) {
 		)}
 
 		<AddWord addWordCallBack={addWord} />
+
+		<input id="file-input" type="file" hidden={true} onChange={event => {
+			const file = event.target.files[0]
+			const type = file.name.toLowerCase().split(".").pop()
+			if (type !== "csv") {
+				window.alert("The file type has to be CSV.")
+			} else {
+				if (list.title === "Untitled") {
+					list.title = file.name.replace(/\.csv$/i, "")
+				}
+				const reader = new FileReader()
+				reader.onload = function () {
+					const content = this.result
+					const rowSplit = content.split("\n")
+					for (const row of rowSplit) {
+						const columnSplit = row.split(",")
+						for (const key in columnSplit) {
+							const column = columnSplit[key]
+							columnSplit[key] = column
+								.substring(1, column.length - 1)
+								.replaceAll(`""`, `"`)
+						}
+						addWord(columnSplit[0], columnSplit[1], false)
+					}
+				}
+				reader.readAsText(file)
+			}
+		}}></input>
 	</main>
 }
 
