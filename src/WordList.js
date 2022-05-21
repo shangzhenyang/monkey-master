@@ -1,10 +1,14 @@
-import { useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import AddWord from "./AddWord"
 import WordCard from "./WordCard"
+
 
 function WordList(props) {
 	const { index } = useParams()
 	const list = props.lists[index]
+	if (!list) {
+		return <Navigate to="/" />
+	}
 
 	const addWord = (newWord, newDefinition, scroll = true) => {
 		list.words.push({
@@ -61,7 +65,10 @@ function WordList(props) {
 				newA.click()
 			}}><span className="icon">&#xe642;</span></li>
 
-			<li className="wordlist-nav-button" title="Delete this list"><span className="icon">&#xe603;</span></li>
+			<li className="wordlist-nav-button" title="Delete this list" onClick={() => {
+				props.lists.splice(index, 1)
+				props.saveLists()
+			}}><span className="icon">&#xe603;</span></li>
 		</ul>
 		{list.words.map((item, index) =>
 			<WordCard
