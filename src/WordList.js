@@ -1,10 +1,12 @@
 import { Navigate, useParams } from "react-router-dom"
 import AddWord from "./AddWord"
 import WordCard from "./WordCard"
+import SearchBar from "./search"
+
 
 
 function WordList(props) {
-	const { index } = useParams()
+	const { index } = useParams();
 	const list = props.lists[index]
 	if (!list) {
 		return <Navigate to="/" />
@@ -27,8 +29,10 @@ function WordList(props) {
 			behavior: "smooth"
 		})
 	}
+	console.log(list.words);
 
 	return <main>
+		<SearchBar data={list.words} />
 		<h2 className="wordlist-title" title="Change the title" onClick={() => {
 			const newTitle = prompt("Please enter a new title.")
 			if (!newTitle) {
@@ -39,7 +43,6 @@ function WordList(props) {
 		}}>{list.title}</h2>
 		<ul className="wordlist-nav-row">
 			<li className="wordlist-nav-button" title="Add new words" onClick={scrollToBottom}><span className="icon">&#xe624;</span></li>
-			<li className="wordlist-nav-button" title="Search for words"><span className="icon">&#xe8ba;</span></li>
 			<li className="wordlist-nav-button" title="Test your knowledge"><span className="icon">&#xe62f;</span></li>
 			<li className="wordlist-nav-button" title="Import as CSV" onClick={() => {
 				const fileInput = document.getElementById("file-input")
