@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf8">
+	<meta name="viewport" content="width=device-width">
+	<meta name="author" content="INFO 340 Group 14">
+	<meta name="description" content="The best way to learn new vocabulary">
+	<title>Wordlist Page of Monkey Master</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Exo+2&family=Yatra+One&display=swap">
+	<link rel="stylesheet" href="css/general.css">
+</head>
+
+<body>
+	<header>
+		<img class="logo" src="img/icon.png" alt="icon">
+		<h1>Monkey Master</h1>
+		<nav>
+			<a href="index.html" title="Back to Dashboard"><span class="icon-arrow">&#xe64e;</span></a>
+		</nav>
+	</header>
+	<main>
+		<h2>Title</h2>
+		<!--word list menu items-->
+		<ul class="wordlist-nav-row">
+			<!--add new words-->
+			<li class="wordlist-nav-button" title="Add new words"><span class="icon">&#xe624;</span></li>
+			<!--search for words-->
+			<li class="wordlist-nav-button" title="Search for words"><span class="icon">&#xe8ba;</span></li>
+			<!--test-->
+			<li class="wordlist-nav-button" title="Test your knowledge"><span class="icon">&#xe62f;</span></li>
+			<!--more-->
+			<li class="wordlist-nav-button" title="More options"><span class="icon">&#xe73a;</span></li>
+		</ul>
+		<!--word list card items-->
+		<div class="word-cards">
+			<!--Card1-->
+			<div class="words"><h3 class="text">hello</p></div>
+			<div class="words"><h3 class="text">你好</p></div>
+			<span class="icon-card" title="Bookmark">&#xe600;</span>
+			<span class="icon-card" title="Edit this card">&#xe601;</span>
+			<span class="icon-card" title="Play pronunciation">&#xe8b8;</span>
+		</div>
+		<div class="word-cards">
+			<!--Card2-->
+			<div class="words"><h3 class="text">world</p></div>
+			<div class="words"><h3 class="text">世界</p></div>
+			<span class="icon-card" title="Bookmark">&#xe600;</span>
+			<span class="icon-card" title="Edit this card">&#xe601;</span>
+			<span class="icon-card" title="Play pronunciation">&#xe8b8;</span>
+		</div>
+		<div class="word-cards">
+			<!--Card3-->
+			<div class="words"><h3 class="text">code</p></div>
+			<div class="words"><h3 class="text">代码</p></div>
+			<span class="icon-card" title="Bookmark">&#xe600;</span>
+			<span class="icon-card" title="Edit this card">&#xe601;</span>
+			<span class="icon-card" title="Play pronunciation">&#xe8b8;</span>
+		</div>
+		<form id="new-word-form" action="" method="get" class="form-template">
+			<div class="form-template">
+			  <label for="word">Enter the word: </label>
+			  <input type="text" name="word" id="word" required>
+			</div>
+			<div class="form-template">
+			  <label for="definition">Enter the definition for that word: </label>
+			  <input type="text" name="definition" id="definition" required>
+			</div>
+			<div class="form-template">
+			  <input type="submit" value="Confirm">
+			</div>
+		  </form>
+
+	</main>
+	<a href="#new-word-form"><button class="floating-btn">+</button></a>
+	<footer>&copy; 2022 INFO 340 Group 14</footer>
+</body>
+
+</html>
