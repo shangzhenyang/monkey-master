@@ -1,9 +1,7 @@
 import { Navigate, useParams } from "react-router-dom"
 import AddWord from "./AddWord"
 import WordCard from "./WordCard"
-import SearchBar from "./search"
-
-
+import SearchBar from "./SearchBar"
 
 function WordList(props) {
 	const { index } = useParams();
