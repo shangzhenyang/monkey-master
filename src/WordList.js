@@ -41,7 +41,11 @@ function WordList(props) {
 		}}>{list.title}</h2>
 		<ul className="wordlist-nav-row">
 			<li className="wordlist-nav-button" title="Add new words" onClick={scrollToBottom}><span className="icon">&#xe624;</span></li>
-			<li className="wordlist-nav-button" title="Test your knowledge"><span className="icon">&#xe62f;</span></li>
+
+			<li className="wordlist-nav-button" title="Test your knowledge" onClick={() => {
+				window.alert("This is the last 10% of the app. Coming soon.")
+			}}><span className="icon">&#xe62f;</span></li>
+
 			<li className="wordlist-nav-button" title="Import as CSV" onClick={() => {
 				const fileInput = document.getElementById("file-input")
 				fileInput.value = ""
@@ -67,10 +71,13 @@ function WordList(props) {
 			}}><span className="icon">&#xe642;</span></li>
 
 			<li className="wordlist-nav-button" title="Delete this list" onClick={() => {
-				props.lists.splice(index, 1)
-				props.saveLists()
+				if (window.confirm("Are you sure that you want to delete this word list?")) {
+					props.lists.splice(index, 1)
+					props.saveLists()
+				}
 			}}><span className="icon">&#xe603;</span></li>
 		</ul>
+
 		{list.words.map((item, index) =>
 			<WordCard
 				key={index}
