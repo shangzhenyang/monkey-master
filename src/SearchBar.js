@@ -27,10 +27,10 @@ function SearchBar({ data }) {
 					onChange={handleFilter}
 				/>
 				{filteredData.length !== 0 && (
-					<div className="dataResult">
+					<div className="data-result">
 						{filteredData.map((value, key) => {
 							return (
-								<div className="dataItem">
+								<div className="data-item">
 									<p>{value.word} {value.definition}</p>
 								</div>
 							)
