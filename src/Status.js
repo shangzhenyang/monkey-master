@@ -10,8 +10,10 @@ function Status(props) {
 		title = "Monkey Master (Lv2)"
 	} else if (count < 30) {
 		title = "Monkey Monster (Lv3)"
-	} else {
+	} else if (count < 40) {
 		title = "Monkey King (Lv4)"
+	} else {
+		title = "Monkey Elder (Lv5)"
 	}
 	return <>
 		<h2>Status</h2>
