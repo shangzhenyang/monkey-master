@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import "./App.css"
 import About from "./About"
 import Dashboard from "./Dashboard"
@@ -49,26 +49,24 @@ function App() {
 		localStorage.setItem("wordLists", JSON.stringify(newLists))
 	}
 	return <div className="App">
-		<BrowserRouter>
-			<Header navItems={["Dashboard", "About"]} />
-			<Routes>
-				<Route
-					path="/"
-					element={<Dashboard
-						lists={lists}
-						saveLists={saveLists}
-					/>} />
-				<Route
-					path="/about"
-					element={<About />} />
-				<Route
-					path="/wordlist/:index"
-					element={<WordList
-						lists={lists}
-						saveLists={saveLists}
-					/>} />
-			</Routes>
-		</BrowserRouter>
+		<Header navItems={["Dashboard", "About"]} />
+		<Routes>
+			<Route
+				path="/"
+				element={<Dashboard
+					lists={lists}
+					saveLists={saveLists}
+				/>} />
+			<Route
+				path="/about"
+				element={<About />} />
+			<Route
+				path="/wordlist/:index"
+				element={<WordList
+					lists={lists}
+					saveLists={saveLists}
+				/>} />
+		</Routes>
 		<Footer />
 	</div>
 }
