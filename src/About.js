@@ -23,14 +23,14 @@ const MEMBERS = [{
 }]
 
 function About() {
+	const members = MEMBERS.map((info, index) =>
+		<Member key={index} info={info} />
+	);
+
 	return <main className="about">
 		<h1>About Us</h1>
 		<h2>This is our Team</h2>
-		<div className="team">
-			{MEMBERS.map((info, index) =>
-				<Member key={index} info={info} />
-			)}
-		</div>
+		<div className="team">{members}</div>
 	</main>
 }
 

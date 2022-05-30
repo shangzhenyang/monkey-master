@@ -19,15 +19,31 @@ function WordList(props) {
 		if (scroll) {
 			setTimeout(scrollToBottom, 100)
 		}
-	}
+	};
 
 	const scrollToBottom = () => {
 		window.scrollTo({
 			top: document.body.scrollHeight,
 			behavior: "smooth"
 		})
-	}
-	console.log(list.words);
+	};
+
+	const wordCards = list.words.map((item, index) =>
+		<WordCard
+			key={index}
+			word={item.word}
+			definition={item.definition}
+			onChange={(newWord, newDefinition) => {
+				item.word = newWord
+				item.definition = newDefinition
+				props.saveLists()
+			}}
+			onDelete={() => {
+				list.words.splice(index, 1)
+				props.saveLists()
+			}}
+		/>
+	);
 
 	return <main>
 		<SearchBar data={list.words} />
@@ -78,22 +94,7 @@ function WordList(props) {
 			}}><span className="icon">&#xe603;</span></li>
 		</ul>
 
-		{list.words.map((item, index) =>
-			<WordCard
-				key={index}
-				word={item.word}
-				definition={item.definition}
-				onChange={(newWord, newDefinition) => {
-					item.word = newWord
-					item.definition = newDefinition
-					props.saveLists()
-				}}
-				onDelete={() => {
-					list.words.splice(index, 1)
-					props.saveLists()
-				}}
-			/>
-		)}
+		{wordCards}
 
 		<AddWord addWordCallBack={addWord} />
 

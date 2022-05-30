@@ -18,6 +18,14 @@ function SearchBar({ data }) {
 		}
 	};
 
+	const resultItems = filteredData.map((value, key) => {
+		return (
+			<div className="data-item">
+				<p>{value.word} {value.definition}</p>
+			</div>
+		)
+	});
+
 	return (
 		<div className="search">
 			<div className="searchInputs">
@@ -27,15 +35,7 @@ function SearchBar({ data }) {
 					onChange={handleFilter}
 				/>
 				{filteredData.length !== 0 && (
-					<div className="data-result">
-						{filteredData.map((value, key) => {
-							return (
-								<div className="data-item">
-									<p>{value.word} {value.definition}</p>
-								</div>
-							)
-						})}
-					</div>
+					<div className="data-result">{resultItems}</div>
 				)}
 			</div>
 		</div>
