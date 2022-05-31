@@ -3,23 +3,7 @@ function WordCard(props) {
 		<div className="word">{props.word}</div>
 		<div className="word">{props.definition}</div>
 
-		<span className="icon-card" title="Edit this card" onClick={() => {
-			const newWord = prompt(
-				"Please enter a new word.",
-				props.word
-			)
-			if (!newWord) {
-				return false
-			}
-			const newDefinition = prompt(
-				"Please enter a new definition.",
-				props.definition
-			)
-			if (!newDefinition) {
-				return false
-			}
-			props.onChange(newWord, newDefinition)
-		}}>&#xe601;</span>
+		<span className="icon-card" title="Edit this card" onClick={props.onChange}>&#xe601;</span>
 
 		<span className="icon-card" title="Play pronunciation" onClick={() => {
 			if (window.speechSynthesis) {

@@ -38,10 +38,6 @@ body::before {
 	z-index: -1;
 }
 
-.modal-dialog {
-	color: black;
-}
-
 footer {
 	background-color: var(--theme-color);
 	bottom: 0;
@@ -297,7 +293,7 @@ form {
 	max-width: 500px;
 }
 
-label,
+form label,
 input {
 	display: block;
 	margin-bottom: 10px;
@@ -306,7 +302,7 @@ input {
 	padding: 10px 15px;
 }
 
-label {
+form label {
 	padding-right: 10px;
 	background-color: var(--second-theme-color);
 	color: white;
@@ -315,6 +311,14 @@ label {
 input {
 	border: 1px solid rgba(0, 0, 0, .2);
 	width: 100%;
+}
+
+.modal-dialog {
+	color: black;
+}
+
+.modal-dialog label {
+	margin-bottom: 10px;
 }
 
 /* from Alibaba */

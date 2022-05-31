@@ -20,13 +20,6 @@ function AddWord(props) {
 		setInputtedDef("")
 	}
 
-	const handleEnterKey = (event, callback) => {
-		if (event.key === "Enter") {
-			event.preventDefault()
-			callback()
-		}
-	}
-
 	return <form id="new-word-form" className="form-template" onSubmit={handleSubmit}>
 		<div className="form-template">
 			<label htmlFor="word">Enter a new word:</label>
@@ -34,11 +27,6 @@ function AddWord(props) {
 				name="word"
 				id="word"
 				onChange={handleWordChange}
-				onKeyDown={event => {
-					handleEnterKey(event, () => {
-						document.getElementById("definition").focus()
-					})
-				}}
 				placeholder="ex: Japan"
 				value={inputtedWord}
 				required></input>
@@ -49,12 +37,6 @@ function AddWord(props) {
 				name="definition"
 				id="definition"
 				onChange={handleDefChange}
-				onKeyDown={event => {
-					handleEnterKey(event, () => {
-						handleSubmit()
-						document.getElementById("word").focus()
-					})
-				}}
 				placeholder="ex: 日本"
 				value={inputtedDef}
 				required></input>

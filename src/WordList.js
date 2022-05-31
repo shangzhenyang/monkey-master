@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react"
+import { useState } from "react"
 import { Navigate, useParams } from "react-router-dom"
 import { Button, Modal } from "react-bootstrap"
 import AddWord from "./AddWord"
@@ -9,15 +9,22 @@ function WordList(props) {
 	const { index } = useParams()
 	const list = props.lists[index]
 
+	const [goHome, setGoHome] = useState(false);
 	const [isDialogConfirm, setIsDialogConfirm] = useState(false);
 	const [isDialogShown, setIsDialogShown] = useState(false);
+	const [isPromptShown, setIsPromptShown] = useState(false);
 	const closeDialog = () => {
 		setIsDialogShown(false);
 	};
+	const closePrompt = () => {
+		setIsPromptShown(false);
+	};
 	const [dialogContent, setDialogContent] = useState("");
 	const [dialogCallback, setDialogCallback] = useState(() => closeDialog);
+	const [promptCallback, setPromptCallback] = useState(() => closePrompt);
+	const [promptValue, setPromptValue] = useState("");
 
-	if (!list) {
+	if (!list || goHome) {
 		return <Navigate to="/" />
 	}
 
@@ -48,11 +55,32 @@ function WordList(props) {
 		});
 	};
 
+	const prompt = (text, defaultValue) => {
+		return new Promise(resolve => {
+			setIsPromptShown(true);
+			setDialogContent(text);
+			setPromptValue(defaultValue);
+			setPromptCallback(() => resolve);
+		});
+	};
+
+	const changeTitle = () => {
+		prompt("Please enter a new title.", list.title)
+			.then(newValue => {
+				if (newValue) {
+					list.title = newValue;
+					props.saveLists();
+				}
+				closePrompt();
+			});
+	};
+
 	const deleteList = () => {
 		confirm("Are you sure that you want to delete this word list?")
 			.then(() => {
 				props.lists.splice(index, 1);
 				props.saveLists();
+				setGoHome(true);
 			});
 	};
 
@@ -120,10 +148,19 @@ function WordList(props) {
 			key={index}
 			word={item.word}
 			definition={item.definition}
-			onChange={(newWord, newDefinition) => {
-				item.word = newWord
-				item.definition = newDefinition
-				props.saveLists()
+			onChange={async () => {
+				const newWord = await prompt("Please enter a new word.", item.word);
+				if (!newWord) {
+					return false;
+				}
+				const newDefinition = await prompt("Please enter a new definition.", item.definition);
+				if (!newDefinition) {
+					return false;
+				}
+				item.word = newWord;
+				item.definition = newDefinition;
+				props.saveLists();
+				closePrompt();
 			}}
 			onDelete={() => {
 				confirm(`Are you sure that you want to delete the word "${item.word}"?`)
@@ -138,14 +175,7 @@ function WordList(props) {
 
 	return <main>
 		<SearchBar data={list.words} />
-		<h2 className="wordlist-title" title="Change the title" onClick={() => {
-			const newTitle = prompt("Please enter a new title.")
-			if (!newTitle) {
-				return false
-			}
-			list.title = newTitle
-			props.saveLists()
-		}}>{list.title}</h2>
+		<h2 className="wordlist-title" title="Change the title" onClick={changeTitle}>{list.title}</h2>
 		<ul className="wordlist-nav-row">
 			<li className="wordlist-nav-button" title="Add new words" onClick={scrollToBottom}><span className="icon">&#xe624;</span></li>
 
@@ -176,6 +206,37 @@ function WordList(props) {
 			<Modal.Footer>
 				<Button variant="secondary" hidden={!isDialogConfirm} onClick={closeDialog}>Cancel</Button>
 				<Button variant="primary" onClick={dialogCallback}>OK</Button>
+			</Modal.Footer>
+		</Modal>
+
+		<Modal
+			show={isPromptShown}
+			onHide={closePrompt}
+			backdrop="static"
+		>
+			<Modal.Header>
+				<Modal.Title>Input</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>
+				<label htmlFor="prompt-input">{dialogContent}</label>
+				<input id="prompt-input"
+					value={promptValue}
+					autoComplete="off"
+					onChange={event => {
+						setPromptValue(event.target.value);
+					}}
+					onKeyDown={event => {
+						if (event.code === "Enter") {
+							promptCallback(promptValue);
+						}
+					}}
+				/>
+			</Modal.Body>
+			<Modal.Footer>
+				<Button variant="secondary" onClick={closePrompt}>Cancel</Button>
+				<Button variant="primary" onClick={() => {
+					promptCallback(promptValue);
+				}}>OK</Button>
 			</Modal.Footer>
 		</Modal>
 	</main>
