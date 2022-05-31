@@ -35,12 +35,8 @@ function WordCard(props) {
 			}
 		}}>&#xe8b8;</span>
 
-		<span className="icon-card" title="Delete the word" onClick={() => {
-			if (window.confirm(`Are you sure that you want to delete the word "${props.word}"?`)) {
-				props.onDelete()
-			}
-		}}>&#xe602;</span>
-	</div>
+		<span className="icon-card" title="Delete the word" onClick={props.onDelete}>&#xe602;</span>
+	</div >
 }
 
 export default WordCard

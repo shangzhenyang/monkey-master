@@ -1,5 +1,4 @@
 * {
-	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 	font-family: 'Exo 2', sans-serif;
@@ -17,6 +16,7 @@ a {
 
 a:hover {
 	background-color: rgba(255, 255, 255, .2);
+	color: inherit;
 }
 
 body {
@@ -36,6 +36,10 @@ body::before {
 	top: 0;
 	width: 100%;
 	z-index: -1;
+}
+
+.modal-dialog {
+	color: black;
 }
 
 footer {
@@ -62,6 +66,8 @@ header h1 {
 
 h2 {
 	color: brown;
+	font-size: 1.5em;
+	line-height: 1.5;
 	margin: 0;
 	padding: 10px;
 }
@@ -99,7 +105,7 @@ ul {
 	padding-inline-start: 0;
 }
 
-.card {
+.banana-card {
 	background-color: var(--theme-color);
 	border: 1px solid rgba(0, 0, 0, .2);
 	border-radius: 10px;
@@ -110,26 +116,27 @@ ul {
 	width: auto;
 }
 
-.card:hover,
+.banana-card:hover,
 .floating-btn:hover {
 	opacity: .8;
 }
 
-.card:active,
+.banana-card:active,
 .floating-btn:active {
 	opacity: .6;
 }
 
-.card:nth-child(even) {
+.banana-card:nth-child(even) {
 	background-color: var(--second-theme-color);
 }
 
-.card-content img {
+.banana-card-content img {
 	height: 20px;
 	margin-left: 5px;
 }
 
-.card-title {
+.banana-card-title {
+	font-size: 1.17em;
 	margin: 0;
 }
 
@@ -199,7 +206,6 @@ ul {
 	height: 190px;
 	margin: 0 auto;
 	padding: 5px;
-	position: relative;
 }
 
 .avatar img {
@@ -343,7 +349,7 @@ input {
 
 
 @media (min-width: 800px) {
-	.card {
+	.banana-card {
 		display: inline-block;
 		margin: 5px;
 		width: 200px;
@@ -397,6 +403,7 @@ input:focus {
 }
 
 .data-item p {
+	margin-bottom: 0;
 	margin-left: 10px;
 }
 

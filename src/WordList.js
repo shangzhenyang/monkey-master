@@ -1,11 +1,22 @@
+import { useState, useCallback } from "react"
 import { Navigate, useParams } from "react-router-dom"
+import { Button, Modal } from "react-bootstrap"
 import AddWord from "./AddWord"
 import WordCard from "./WordCard"
 import SearchBar from "./SearchBar"
 
 function WordList(props) {
-	const { index } = useParams();
+	const { index } = useParams()
 	const list = props.lists[index]
+
+	const [isDialogConfirm, setIsDialogConfirm] = useState(false);
+	const [isDialogShown, setIsDialogShown] = useState(false);
+	const closeDialog = () => {
+		setIsDialogShown(false);
+	};
+	const [dialogContent, setDialogContent] = useState("");
+	const [dialogCallback, setDialogCallback] = useState(() => closeDialog);
+
 	if (!list) {
 		return <Navigate to="/" />
 	}
@@ -21,88 +32,57 @@ function WordList(props) {
 		}
 	};
 
-	const scrollToBottom = () => {
-		window.scrollTo({
-			top: document.body.scrollHeight,
-			behavior: "smooth"
-		})
+	const alert = text => {
+		setIsDialogShown(true);
+		setIsDialogConfirm(false);
+		setDialogContent(text);
+		setDialogCallback(() => closeDialog);
 	};
 
-	const wordCards = list.words.map((item, index) =>
-		<WordCard
-			key={index}
-			word={item.word}
-			definition={item.definition}
-			onChange={(newWord, newDefinition) => {
-				item.word = newWord
-				item.definition = newDefinition
-				props.saveLists()
-			}}
-			onDelete={() => {
-				list.words.splice(index, 1)
-				props.saveLists()
-			}}
-		/>
-	);
+	const confirm = text => {
+		return new Promise(resolve => {
+			setIsDialogShown(true);
+			setIsDialogConfirm(true);
+			setDialogContent(text);
+			setDialogCallback(() => resolve);
+		});
+	};
 
-	return <main>
-		<SearchBar data={list.words} />
-		<h2 className="wordlist-title" title="Change the title" onClick={() => {
-			const newTitle = prompt("Please enter a new title.")
-			if (!newTitle) {
-				return false
+	const deleteList = () => {
+		confirm("Are you sure that you want to delete this word list?")
+			.then(() => {
+				props.lists.splice(index, 1);
+				props.saveLists();
+			});
+	};
+
+	const exportCsv = () => {
+		const encodeCsvValue = text =>
+			`"` + text.replaceAll(`"`, `""`) + `"`
+		let str = ""
+		for (const wordItem of list.words) {
+			if (str) {
+				str += "\n"
 			}
-			list.title = newTitle
-			props.saveLists()
-		}}>{list.title}</h2>
-		<ul className="wordlist-nav-row">
-			<li className="wordlist-nav-button" title="Add new words" onClick={scrollToBottom}><span className="icon">&#xe624;</span></li>
+			str += encodeCsvValue(wordItem.word) + "," +
+				encodeCsvValue(wordItem.definition)
+		}
+		const newA = document.createElement("a")
+		newA.href = "data:text/plain;charset=utf-8," +
+			encodeURIComponent("\uFEFF" + str)
+		newA.download = list.title + ".csv"
+		newA.click()
+	};
 
-			<li className="wordlist-nav-button" title="Test your knowledge" onClick={() => {
-				window.alert("This is the last 10% of the app. Coming soon.")
-			}}><span className="icon">&#xe62f;</span></li>
-
-			<li className="wordlist-nav-button" title="Import as CSV" onClick={() => {
-				const fileInput = document.getElementById("file-input")
-				fileInput.value = ""
-				fileInput.click()
-			}}><span className="icon">&#xe641;</span></li>
-
-			<li className="wordlist-nav-button" title="Export as CSV" onClick={() => {
-				const encodeCsvValue = text =>
-					`"` + text.replaceAll(`"`, `""`) + `"`
-				let str = ""
-				for (const wordItem of list.words) {
-					if (str) {
-						str += "\n"
-					}
-					str += encodeCsvValue(wordItem.word) + "," +
-						encodeCsvValue(wordItem.definition)
-				}
-				const newA = document.createElement("a")
-				newA.href = "data:text/plain;charset=utf-8," +
-					encodeURIComponent("\uFEFF" + str)
-				newA.download = list.title + ".csv"
-				newA.click()
-			}}><span className="icon">&#xe642;</span></li>
-
-			<li className="wordlist-nav-button" title="Delete this list" onClick={() => {
-				if (window.confirm("Are you sure that you want to delete this word list?")) {
-					props.lists.splice(index, 1)
-					props.saveLists()
-				}
-			}}><span className="icon">&#xe603;</span></li>
-		</ul>
-
-		{wordCards}
-
-		<AddWord addWordCallBack={addWord} />
-
-		<input id="file-input" type="file" hidden={true} onChange={event => {
-			const file = event.target.files[0]
+	const importCsvFromFile = () => {
+		const fileInput = document.createElement("input")
+		fileInput.type = "file"
+		fileInput.accept = ".csv"
+		fileInput.onchange = function () {
+			const file = this.files[0]
 			const type = file.name.toLowerCase().split(".").pop()
 			if (type !== "csv") {
-				window.alert("The file type has to be CSV.")
+				alert("The file type has to be CSV.")
 			} else {
 				if (list.title === "Untitled") {
 					list.title = file.name.replace(/\.csv$/i, "")
@@ -124,7 +104,80 @@ function WordList(props) {
 				}
 				reader.readAsText(file)
 			}
-		}}></input>
+		}
+		fileInput.click()
+	};
+
+	const scrollToBottom = () => {
+		window.scrollTo({
+			top: document.body.scrollHeight,
+			behavior: "smooth"
+		})
+	};
+
+	const wordCards = list.words.map((item, index) =>
+		<WordCard
+			key={index}
+			word={item.word}
+			definition={item.definition}
+			onChange={(newWord, newDefinition) => {
+				item.word = newWord
+				item.definition = newDefinition
+				props.saveLists()
+			}}
+			onDelete={() => {
+				confirm(`Are you sure that you want to delete the word "${item.word}"?`)
+					.then(() => {
+						list.words.splice(index, 1);
+						props.saveLists();
+						closeDialog();
+					});
+			}}
+		/>
+	);
+
+	return <main>
+		<SearchBar data={list.words} />
+		<h2 className="wordlist-title" title="Change the title" onClick={() => {
+			const newTitle = prompt("Please enter a new title.")
+			if (!newTitle) {
+				return false
+			}
+			list.title = newTitle
+			props.saveLists()
+		}}>{list.title}</h2>
+		<ul className="wordlist-nav-row">
+			<li className="wordlist-nav-button" title="Add new words" onClick={scrollToBottom}><span className="icon">&#xe624;</span></li>
+
+			<li className="wordlist-nav-button" title="Test your knowledge" onClick={() => {
+				alert("This is the last 10% of the app. Coming soon.")
+			}}><span className="icon">&#xe62f;</span></li>
+
+			<li className="wordlist-nav-button" title="Import as CSV" onClick={importCsvFromFile}><span className="icon">&#xe641;</span></li>
+
+			<li className="wordlist-nav-button" title="Export as CSV" onClick={exportCsv}><span className="icon">&#xe642;</span></li>
+
+			<li className="wordlist-nav-button" title="Delete this list" onClick={deleteList}><span className="icon">&#xe603;</span></li>
+		</ul>
+
+		{wordCards}
+
+		<AddWord addWordCallBack={addWord} />
+
+		<Modal
+			show={isDialogShown}
+			onHide={closeDialog}
+			backdrop="static"
+		>
+			<Modal.Header>
+				<Modal.Title>{isDialogConfirm ? "Confirm" : "Alert"}</Modal.Title>
+			</Modal.Header>
+			<Modal.Body>{dialogContent}</Modal.Body>
+			<Modal.Footer>
+				<Button variant="secondary" hidden={!isDialogConfirm} onClick={closeDialog}>Cancel</Button>
+				<Button variant="primary" onClick={dialogCallback}>OK</Button>
+			</Modal.Footer>
+		</Modal>
 	</main>
 }
 

@@ -1,5 +1,5 @@
 function FloatingButton(props) {
-	return <button className="floating-btn" onClick={() => {
+	return <button className="floating-btn" type="button" onClick={() => {
 		props.lists.push({
 			title: "Untitled",
 			words: []
