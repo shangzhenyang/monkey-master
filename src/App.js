@@ -7,6 +7,7 @@ import Dashboard from "./Dashboard"
 import Footer from "./Footer"
 import Header from "./Header"
 import WordList from "./WordList"
+import Quiz from "./Quiz"
 
 function App() {
 	const [lists, setLists] = useState(
@@ -67,6 +68,9 @@ function App() {
 					lists={lists}
 					saveLists={saveLists}
 				/>} />
+			<Route
+				path="/Quiz"
+				element={<Quiz />} />
 		</Routes>
 		<Footer />
 	</div>

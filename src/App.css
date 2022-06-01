@@ -414,3 +414,76 @@ input:focus {
 p:hover {
 	color: white;
 }
+
+
+/* Quiz Section */
+.quiz{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 60vh;
+}
+
+.quiz h1{
+	color: var(--theme-color);
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.quiz h2{
+	margin: 0;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.quiz p{
+	width: 100%;
+	font-size: 20px;
+	height: 50px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.quiz label {
+	display: inline-block;
+	width: 450px;
+	border-radius: 25px;
+	padding: 20px;
+	height: 150px;
+	display: inline-block;
+	width: 450px;
+	color: white;
+	background-color: var(--second-theme-color);
+	position: relative;
+}
+
+.submit {
+	margin-top: 50px;
+	width: 400px;
+	padding: 5px 10px;
+	box-sizing: border-box;
+	height: 42px;
+}
+
+.quiz_button{
+	position:absolute;
+	width:10px;
+	height:10px;
+	top:0;
+	right:-10; 	
+	color: var(--theme-color);
+	background-color: transparent;
+	border: transparent;
+}
+
+@font-face {
+	font-family: 'iconfont';  /* Project id 3355937 */
+	src: url('//at.alicdn.com/t/font_3355937_lcdy58le2kf.woff2?t=1654118984486') format('woff2'),
+		 url('//at.alicdn.com/t/font_3355937_lcdy58le2kf.woff?t=1654118984486') format('woff'),
+		 url('//at.alicdn.com/t/font_3355937_lcdy58le2kf.ttf?t=1654118984486') format('truetype');
+  }
