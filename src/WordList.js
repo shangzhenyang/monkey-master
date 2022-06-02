@@ -179,7 +179,7 @@ function WordList(props) {
 		<ul className="wordlist-nav-row">
 			<li className="wordlist-nav-button" title="Add new words" onClick={scrollToBottom}><span className="icon">&#xe624;</span></li>
 
-			<li className="wordlist-nav-button" title="Test your knowledge"><Link to="/Quiz"><span className="icon">&#xe62f;</span></Link></li>
+			<li className="wordlist-nav-button" title="Test your knowledge"><Link to={`/quiz/${index}`}><span className="icon">&#xe62f;</span></Link></li>
 
 			<li className="wordlist-nav-button" title="Import as CSV" onClick={importCsvFromFile}><span className="icon">&#xe641;</span></li>
 
