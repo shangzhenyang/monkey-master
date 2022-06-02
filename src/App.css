@@ -256,6 +256,12 @@ ul {
 	width: 80px;
 }
 
+.wordlist-nav-button a{
+	height: inherit;
+	width: inherit;
+	display: block;
+}
+
 .wordlist-nav-row {
 	cursor: pointer;
 	margin: 0 auto;

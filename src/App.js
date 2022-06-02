@@ -69,7 +69,7 @@ function App() {
 					saveLists={saveLists}
 				/>} />
 			<Route
-				path="/Quiz"
+				path="/quiz/:index"
 				element={<Quiz />} />
 		</Routes>
 		<Footer />
