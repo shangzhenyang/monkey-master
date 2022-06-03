@@ -55,13 +55,15 @@ header {
 	background-color: var(--theme-color);
 }
 
-header h1 {
-	display: inline-block;
+.app-title {
+	display: flex;
+}
+
+.app-title h1 {
 	font-size: 24px;
 	height: 50px;
 	line-height: 50px;
 	margin: 15px 0;
-	position: absolute;
 }
 
 h2 {
@@ -82,7 +84,7 @@ nav > * {
 	border-top-right-radius: var(--radius);
 	cursor: pointer;
 	display: inline-block;
-	margin: 10px 10px 0;
+	margin: 0 10px;
 	padding: 10px 15px;
 	text-decoration: none;
 	transition: all .25s;
@@ -161,7 +163,7 @@ ul {
 .logo {
 	--size: 50px;
 	border-radius: 5px;
-	margin: 15px 15px 0;
+	margin: 15px;
 	height: var(--size);
 	width: var(--size);
 }
@@ -255,15 +257,27 @@ ul {
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.23);
 	line-height: 80px;
 	text-align: center;
-
+	transition: background-color .25s;
 	margin: 0;
 	width: 80px;
 }
 
-.wordlist-nav-button a{
+.wordlist-nav-button:hover {
+	background-color: rgba(100,0,0,.8);
+}
+
+.wordlist-nav-button:active {
+	background-color: rgb(100,0,0);
+}
+
+.wordlist-nav-button a {
 	height: inherit;
 	width: inherit;
 	display: block;
+}
+
+.wordlist-nav-button a:hover {
+	background-color: transparent;
 }
 
 .wordlist-nav-row {
@@ -427,14 +441,14 @@ p:hover {
 
 
 /* Quiz Section */
-.quiz{
+.quiz {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	min-height: 60vh;
 }
 
-.quiz h1{
+.quiz h1 {
 	color: var(--theme-color);
 	width: 100%;
 	display: flex;
@@ -442,7 +456,7 @@ p:hover {
 	align-items: center;
 }
 
-.quiz h2{
+.quiz h2 {
 	margin: 0;
 	width: 100%;
 	display: flex;
@@ -450,7 +464,7 @@ p:hover {
 	align-items: center;
 }
 
-.quiz p{
+.quiz p {
 	width: 100%;
 	font-size: 20px;
 	height: 50px;
@@ -459,33 +473,31 @@ p:hover {
 	align-items: center;
 }
 
-.quiz label {
-	display: inline-block;
+.quiz-box {
+	display: block;
 	width: 450px;
 	border-radius: 25px;
 	padding: 20px;
-	height: 150px;
-	display: inline-block;
+	height: 180px;
 	width: 450px;
 	color: white;
 	background-color: var(--second-theme-color);
 	position: relative;
 }
 
-.submit {
+.quiz-submit-button {
 	margin-top: 50px;
-	width: 400px;
 	padding: 5px 10px;
 	box-sizing: border-box;
 	height: 42px;
 }
 
-.quiz_button{
-	position:absolute;
-	width:10px;
-	height:10px;
-	top:0;
-	right:-10; 	
+.quiz-button {
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	top: 0;
+	right: -10;
 	color: var(--theme-color);
 	background-color: transparent;
 	border: transparent;

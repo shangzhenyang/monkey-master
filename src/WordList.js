@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { Link, Navigate, useParams } from "react-router-dom"
-import { Button, Modal } from "react-bootstrap"
 import AddWord from "./AddWord"
+import Alert from "./Alert"
+import Prompt from "./Prompt"
 import WordCard from "./WordCard"
 import SearchBar from "./SearchBar"
 
@@ -192,51 +193,22 @@ function WordList(props) {
 
 		<AddWord addWordCallBack={addWord} />
 
-		<Modal
-			show={isDialogShown}
-			onHide={closeDialog}
-			backdrop="static"
-		>
-			<Modal.Header>
-				<Modal.Title>{isDialogConfirm ? "Confirm" : "Alert"}</Modal.Title>
-			</Modal.Header>
-			<Modal.Body>{dialogContent}</Modal.Body>
-			<Modal.Footer>
-				<Button variant="secondary" hidden={!isDialogConfirm} onClick={closeDialog}>Cancel</Button>
-				<Button variant="primary" onClick={dialogCallback}>OK</Button>
-			</Modal.Footer>
-		</Modal>
+		<Alert
+			content={dialogContent}
+			isConfirm={isDialogConfirm}
+			isShown={isDialogShown}
+			negativeCallback={closeDialog}
+			positiveCallback={dialogCallback}
+		/>
 
-		<Modal
-			show={isPromptShown}
-			onHide={closePrompt}
-			backdrop="static"
-		>
-			<Modal.Header>
-				<Modal.Title>Input</Modal.Title>
-			</Modal.Header>
-			<Modal.Body>
-				<label htmlFor="prompt-input">{dialogContent}</label>
-				<input id="prompt-input"
-					value={promptValue}
-					autoComplete="off"
-					onChange={event => {
-						setPromptValue(event.target.value);
-					}}
-					onKeyDown={event => {
-						if (event.code === "Enter") {
-							promptCallback(promptValue);
-						}
-					}}
-				/>
-			</Modal.Body>
-			<Modal.Footer>
-				<Button variant="secondary" onClick={closePrompt}>Cancel</Button>
-				<Button variant="primary" onClick={() => {
-					promptCallback(promptValue);
-				}}>OK</Button>
-			</Modal.Footer>
-		</Modal>
+		<Prompt
+			content={dialogContent}
+			isShown={isPromptShown}
+			negativeCallback={closePrompt}
+			positiveCallback={promptCallback}
+			setValue={setPromptValue}
+			value={promptValue}
+		/>
 	</main>
 }
 

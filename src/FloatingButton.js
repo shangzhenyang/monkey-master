@@ -1,11 +1,13 @@
 function FloatingButton(props) {
-	return <button className="floating-btn" type="button" onClick={() => {
+	const addWordList = () => {
 		props.lists.push({
 			title: "Untitled",
 			words: []
 		})
 		props.saveLists()
-	}}>+</button>
+	}
+
+	return <button className="floating-btn" type="button" onClick={addWordList}>+</button>
 }
 
 export default FloatingButton
