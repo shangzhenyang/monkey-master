@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link, Navigate, useParams } from "react-router-dom"
 import AddWord from "./AddWord"
 import Alert from "./Alert"
+import ContextMenu from "./ContextMenu"
 import Prompt from "./Prompt"
 import WordCard from "./WordCard"
 import SearchBar from "./SearchBar"
@@ -11,6 +12,7 @@ function WordList(props) {
 	const list = props.lists[index]
 
 	const [goHome, setGoHome] = useState(false);
+	const [isContextMenuShown, setIsContextMenuShown] = useState(false);
 	const [isDialogConfirm, setIsDialogConfirm] = useState(false);
 	const [isDialogShown, setIsDialogShown] = useState(false);
 	const [isPromptShown, setIsPromptShown] = useState(false);
@@ -20,6 +22,8 @@ function WordList(props) {
 	const closePrompt = () => {
 		setIsPromptShown(false);
 	};
+	const [contextMenuPositionX, setcontextMenuPositionX] = useState(null);
+	const [contextMenuPositionY, setcontextMenuPositionY] = useState(null);
 	const [dialogContent, setDialogContent] = useState("");
 	const [dialogCallback, setDialogCallback] = useState(() => closeDialog);
 	const [promptCallback, setPromptCallback] = useState(() => closePrompt);
@@ -47,22 +51,26 @@ function WordList(props) {
 		setDialogCallback(() => closeDialog);
 	};
 
-	const confirm = text => {
+	const confirm = content => {
 		return new Promise(resolve => {
 			setIsDialogShown(true);
 			setIsDialogConfirm(true);
-			setDialogContent(text);
+			setDialogContent(content);
 			setDialogCallback(() => resolve);
 		});
 	};
 
-	const prompt = (text, defaultValue) => {
+	const prompt = (content, defaultValue) => {
 		return new Promise(resolve => {
 			setIsPromptShown(true);
-			setDialogContent(text);
+			setDialogContent(content);
 			setPromptValue(defaultValue);
 			setPromptCallback(() => resolve);
 		});
+	};
+
+	const closeContextMenu = () => {
+		setIsContextMenuShown(false);
 	};
 
 	const changeTitle = () => {
@@ -103,7 +111,28 @@ function WordList(props) {
 		newA.click()
 	};
 
-	const importCsvFromFile = () => {
+	const showCsvContextMenu = event => {
+		console.log(event)
+		setcontextMenuPositionX(event.pageX);
+		setcontextMenuPositionY(event.pageY);
+		setIsContextMenuShown(true);
+	};
+
+	const importCsv = content => {
+		const rowSplit = content.split("\n");
+		for (const row of rowSplit) {
+			const columnSplit = row.split(",");
+			for (const key in columnSplit) {
+				const column = columnSplit[key];
+				columnSplit[key] = column
+					.substring(1, column.length - 1)
+					.replaceAll(`""`, `"`);
+			}
+			addWord(columnSplit[0], columnSplit[1], false);
+		}
+	};
+
+	const selectCsvFile = () => {
 		const fileInput = document.createElement("input")
 		fileInput.type = "file"
 		fileInput.accept = ".csv"
@@ -118,23 +147,40 @@ function WordList(props) {
 				}
 				const reader = new FileReader()
 				reader.onload = function () {
-					const content = this.result
-					const rowSplit = content.split("\n")
-					for (const row of rowSplit) {
-						const columnSplit = row.split(",")
-						for (const key in columnSplit) {
-							const column = columnSplit[key]
-							columnSplit[key] = column
-								.substring(1, column.length - 1)
-								.replaceAll(`""`, `"`)
-						}
-						addWord(columnSplit[0], columnSplit[1], false)
-					}
+					importCsv(this.result)
 				}
 				reader.readAsText(file)
 			}
 		}
 		fileInput.click()
+	};
+
+	const loadCsvFromUrl = async () => {
+		let url = await prompt("Please enter the URL to a CSV file.", "https://tmp.yangshangzhen.com/genki-ch12.csv");
+		closePrompt();
+		if (!url) {
+			alert("You did not enter anything.");
+			return
+		}
+		if (url.startsWith("http://")) {
+			alert(`A HTTPS site cannot access insecure HTTP resource, so the URL must start with "https://".`);
+			return;
+		}
+		if (!url.startsWith("https://")) {
+			alert(`The URL must start with "https://".`);
+			return;
+		}
+		if (!url.endsWith(".csv")) {
+			alert(`The URL must end with ".csv".`);
+			return;
+		}
+		fetch(url)
+			.then(response => response.text())
+			.then(data => {
+				if (data) {
+					importCsv(data);
+				}
+			});
 	};
 
 	const scrollToBottom = () => {
@@ -182,7 +228,7 @@ function WordList(props) {
 
 			<li className="wordlist-nav-button" title="Test your knowledge"><Link to={`/quiz/${index}`}><span className="icon">&#xe62f;</span></Link></li>
 
-			<li className="wordlist-nav-button" title="Import as CSV" onClick={importCsvFromFile}><span className="icon">&#xe641;</span></li>
+			<li className="wordlist-nav-button" title="Import as CSV" onClick={showCsvContextMenu}><span className="icon">&#xe641;</span></li>
 
 			<li className="wordlist-nav-button" title="Export as CSV" onClick={exportCsv}><span className="icon">&#xe642;</span></li>
 
@@ -208,6 +254,22 @@ function WordList(props) {
 			positiveCallback={promptCallback}
 			setValue={setPromptValue}
 			value={promptValue}
+		/>
+
+		<ContextMenu
+			close={closeContextMenu}
+			items={[
+				{
+					name: "Upload from Local",
+					onClick: selectCsvFile
+				}, {
+					name: "Load from URL",
+					onClick: loadCsvFromUrl
+				}
+			]}
+			show={isContextMenuShown}
+			x={contextMenuPositionX}
+			y={contextMenuPositionY}
 		/>
 	</main>
 }

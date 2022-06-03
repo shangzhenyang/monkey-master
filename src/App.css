@@ -341,6 +341,45 @@ input {
 	margin-bottom: 10px;
 }
 
+.mask {
+	backdrop-filter: blur(5px);
+	background-color: rgba(0,0,0,.5);
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+.context-menu {
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0 0 5px rgba(0,0,0,.5);
+	color: rgba(0,0,0,.8);
+	font-size: 14px;
+	padding: 10px;
+	position: fixed;
+	white-space: nowrap;
+}
+
+.context-menu > div {
+	border-radius: 5px;
+	line-height: 20px;
+	padding: 7.5px 10px;
+	transition: all .25s;
+	white-space: nowrap;
+}
+
+.context-menu > div:focus,
+.context-menu > div:hover {
+	background-color: var(--theme-color);
+	color: white;
+}
+
+.context-menu > div:active {
+	color: rgba(255,255,255,.5);
+}
+
 /* from Alibaba */
 
 .icon {
