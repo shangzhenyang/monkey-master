@@ -79,7 +79,8 @@ function App() {
 				/>} />
 			<Route
 				path="/quiz/:index"
-				element={<Quiz />} />
+				element={<Quiz 
+					lists={lists}/>} />
 		</Routes>
 		<Footer />
 	</div>
