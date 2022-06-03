@@ -151,6 +151,7 @@ ul {
 	bottom: 70px;
 	color: inherit;
 	cursor: pointer;
+	font-family: monospace;
 	font-size: 24px;
 	height: var(--size);
 	line-height: var(--size);
