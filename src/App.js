@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css"
 import About from "./About"
 import Dashboard from "./Dashboard"
@@ -12,9 +13,9 @@ import WebFont from 'webfontloader';
 function App() {
 	useEffect(() => {
 		WebFont.load({
-		  google: {
-			families: ['Exo 2', 'sans-serif']
-		  }
+			google: {
+				families: ['Exo 2', 'sans-serif']
+			}
 		});
 	}, []);
 
@@ -60,30 +61,30 @@ function App() {
 	}
 	return <div className="App">
 		<div className="font-loader">
-		<Header navItems={["Dashboard", "About"]} />
-		<Routes>
-			<Route
-				path="/"
-				element={<Dashboard
-					lists={lists}
-					saveLists={saveLists}
-				/>} />
-			<Route
-				path="/about"
-				element={<About />} />
-			<Route
-				path="/wordlist/:index"
-				element={<WordList
-					lists={lists}
-					saveLists={saveLists}
-				/>} />
-			<Route
-				path="/quiz/:index"
-				element={<Quiz 
-					lists={lists}/>} />
-		</Routes>
-		<Footer />
-	</div>
+			<Header navItems={["Dashboard", "About"]} />
+			<Routes>
+				<Route
+					path="/"
+					element={<Dashboard
+						lists={lists}
+						saveLists={saveLists}
+					/>} />
+				<Route
+					path="/about"
+					element={<About />} />
+				<Route
+					path="/wordlist/:index"
+					element={<WordList
+						lists={lists}
+						saveLists={saveLists}
+					/>} />
+				<Route
+					path="/quiz/:index"
+					element={<Quiz
+						lists={lists} />} />
+			</Routes>
+			<Footer />
+		</div>
 	</div>
 }
 
