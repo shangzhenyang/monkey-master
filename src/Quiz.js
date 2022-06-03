@@ -12,9 +12,13 @@ export default function Quiz() {
 						<label htmlFor="answer">Enter the definition:</label>
 						<input id="answer" type="text" name="answer" />
 						<div className="quiz-check-buttons">
+							<div className='check-button'>
 							<input type="submit" className="quiz-buttons" value="Check" />
+							</div>
+							<div className='two-button'>
 							<input type="submit" className="quiz-buttons" value="Next Word" />
 							<input type="submit" className="quiz-buttons" value="Back to the wordlist" />
+							</div>
 						</div>
 					</div>
 				</div>

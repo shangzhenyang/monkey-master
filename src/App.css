@@ -333,6 +333,8 @@ form label {
 }
 
 input {
+	box-sizing: border-box;
+	height: 42px;
 	border: 1px solid rgba(0, 0, 0, .2);
 	width: 100%;
 }
@@ -479,15 +481,28 @@ p:hover {
 	width: 450px;
 	border-radius: 25px;
 	padding: 20px;
-	height: 180px;
+	height: 190px;
 	width: 450px;
 	color: white;
 	background-color: var(--second-theme-color);
 	position: relative;
+	
+}
+
+.two-button{
+	margin-top: 20px;
+}
+.check-button{
+	margin-top: -20px;
+	margin-bottom: 30px;
+}
+.quiz input{
+	box-sizing: border-box;
+	height: 42px;
 }
 
 .quiz-check-buttons {
-	margin-top: 40px;
+	margin-top: 55px;
 }
 
 .quiz-buttons {
