@@ -28,9 +28,11 @@ function About() {
 	);
 
 	return <main className="about">
+		<div className="font-loader">
 		<h1>About Us</h1>
 		<h2>This is our Team</h2>
 		<div className="team">{members}</div>
+	</div>
 	</main>
 }
 
