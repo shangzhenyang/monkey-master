@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from "react-router-dom"
 import AddWord from "./AddWord"
 import Alert from "./Alert"
 import ContextMenu from "./ContextMenu"
+import Loading from "./Loading"
 import Prompt from "./Prompt"
 import WordCard from "./WordCard"
 import SearchBar from "./SearchBar"
@@ -16,6 +17,7 @@ function WordList(props) {
 	const [isDialogConfirm, setIsDialogConfirm] = useState(false);
 	const [isDialogShown, setIsDialogShown] = useState(false);
 	const [isPromptShown, setIsPromptShown] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const closeDialog = () => {
 		setIsDialogShown(false);
 	};
@@ -112,7 +114,6 @@ function WordList(props) {
 	};
 
 	const showCsvContextMenu = event => {
-		console.log(event)
 		setcontextMenuPositionX(event.pageX);
 		setcontextMenuPositionY(event.pageY);
 		setIsContextMenuShown(true);
@@ -125,7 +126,7 @@ function WordList(props) {
 			for (const key in columnSplit) {
 				const column = columnSplit[key];
 				columnSplit[key] = column
-					.substring(1, column.length - 1)
+					.replace(/^\"|(\"(\s+)?)$/g, "")
 					.replaceAll(`""`, `"`);
 			}
 			addWord(columnSplit[0], columnSplit[1], false);
@@ -162,25 +163,40 @@ function WordList(props) {
 			alert("You did not enter anything.");
 			return
 		}
-		if (url.startsWith("http://")) {
-			alert(`A HTTPS site cannot access insecure HTTP resource, so the URL must start with "https://".`);
+		try {
+			const urlObj = new URL(url.toLowerCase());
+			if (urlObj.protocol === "http:") {
+				alert(`A HTTPS site cannot access insecure HTTP resource, so the URL must start with "https://".`);
+				return;
+			} else if (urlObj.protocol !== "https:") {
+				alert(`The URL must start with "https://".`);
+				return;
+			}
+			if (!urlObj.pathname.endsWith(".csv")) {
+				alert(`The URL must end with ".csv".`);
+				return;
+			}
+		} catch (err) {
+			alert(err.message);
 			return;
 		}
-		if (!url.startsWith("https://")) {
-			alert(`The URL must start with "https://".`);
-			return;
-		}
-		if (!url.endsWith(".csv")) {
-			alert(`The URL must end with ".csv".`);
-			return;
-		}
-		fetch(url)
-			.then(response => response.text())
-			.then(data => {
+		setIsLoading(true);
+		try {
+			const response = await fetch(url);
+			if (response.ok) {
+				const data = await response.text();
 				if (data) {
 					importCsv(data);
+				} else {
+					alert("No data found.");
 				}
-			});
+			} else {
+				alert("Error: " + response.status);
+			}
+		} catch (err) {
+			alert(err.message);
+		}
+		setIsLoading(false);
 	};
 
 	const scrollToBottom = () => {
@@ -271,6 +287,8 @@ function WordList(props) {
 			x={contextMenuPositionX}
 			y={contextMenuPositionY}
 		/>
+
+		<Loading show={isLoading} />
 	</main>
 }
 

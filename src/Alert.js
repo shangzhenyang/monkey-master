@@ -17,7 +17,7 @@ function Alert({
 		</Modal.Header>
 		<Modal.Body>{content}</Modal.Body>
 		<Modal.Footer>
-			<Button variant="secondary" hidden={!isConfirm} onClick={negativeCallback}>Cancel</Button>
+			{isConfirm && <Button variant="secondary" onClick={negativeCallback}>Cancel</Button>}
 			<Button variant="primary" onClick={positiveCallback}>OK</Button>
 		</Modal.Footer>
 	</Modal>

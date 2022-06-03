@@ -348,9 +348,12 @@ input {
 }
 
 .mask {
+	align-items: center;
 	backdrop-filter: blur(5px);
 	background-color: rgba(0,0,0,.5);
+	display: flex;
 	height: 100%;
+	justify-content: center;
 	left: 0;
 	position: fixed;
 	top: 0;
@@ -384,6 +387,26 @@ input {
 
 .context-menu > div:active {
 	color: rgba(255,255,255,.5);
+}
+
+.loading {
+	--size: 50px;
+	animation: loading 1s linear infinite;
+	border: 5px solid white;
+	border-radius: 50%;
+	border-top-color: var(--theme-color);
+	height: var(--size);
+	width: var(--size);
+}
+
+@keyframes loading {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
 }
 
 /* from Alibaba */
@@ -525,7 +548,6 @@ p:hover {
 	color: white;
 	background-color: var(--second-theme-color);
 	position: relative;
-	
 }
 
 .two-button{
