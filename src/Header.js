@@ -13,8 +13,10 @@ function Header(props) {
 	);
 
 	return <header>
-		<img className="logo" src={icon} alt="icon"></img>
-		<h1>Monkey Master</h1>
+		<div className="app-title">
+			<img className="logo" src={icon} alt="icon" />
+			<h1>Monkey Master</h1>
+		</div>
 		<nav>{navLinks}</nav>
 	</header>
 }
