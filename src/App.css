@@ -1,3 +1,7 @@
+.font-loader {
+	font-family: 'Exo 2', sans-serif;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -51,13 +55,15 @@ header {
 	background-color: var(--theme-color);
 }
 
-header h1 {
-	display: inline-block;
+.app-title {
+	display: flex;
+}
+
+.app-title h1 {
 	font-size: 24px;
 	height: 50px;
 	line-height: 50px;
 	margin: 15px 0;
-	position: absolute;
 }
 
 h2 {
@@ -78,7 +84,7 @@ nav>* {
 	border-top-right-radius: var(--radius);
 	cursor: pointer;
 	display: inline-block;
-	margin: 10px 10px 0;
+	margin: 0 10px;
 	padding: 10px 15px;
 	text-decoration: none;
 	transition: all .25s;
@@ -157,7 +163,7 @@ ul {
 .logo {
 	--size: 50px;
 	border-radius: 5px;
-	margin: 15px 15px 0;
+	margin: 15px;
 	height: var(--size);
 	width: var(--size);
 }

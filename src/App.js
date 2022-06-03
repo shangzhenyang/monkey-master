@@ -1,6 +1,5 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css"
 import About from "./About"
 import Dashboard from "./Dashboard"
@@ -8,8 +7,17 @@ import Footer from "./Footer"
 import Header from "./Header"
 import WordList from "./WordList"
 import Quiz from "./Quiz"
+import WebFont from 'webfontloader';
 
 function App() {
+	useEffect(() => {
+		WebFont.load({
+		  google: {
+			families: ['Exo 2', 'sans-serif']
+		  }
+		});
+	}, []);
+
 	const [lists, setLists] = useState(
 		(() => {
 			try {
@@ -51,6 +59,7 @@ function App() {
 		localStorage.setItem("wordLists", JSON.stringify(newLists))
 	}
 	return <div className="App">
+		<div className="font-loader">
 		<Header navItems={["Dashboard", "About"]} />
 		<Routes>
 			<Route
@@ -73,6 +82,7 @@ function App() {
 				element={<Quiz />} />
 		</Routes>
 		<Footer />
+	</div>
 	</div>
 }
 
