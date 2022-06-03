@@ -5,8 +5,8 @@
 }
 
 :root {
-	--theme-color: rgb(100,0,0);
-	--second-theme-color: rgba(100,0,0,.6);
+	--theme-color: rgb(100, 0, 0);
+	--second-theme-color: rgba(100, 0, 0, .6);
 }
 
 a {
@@ -72,7 +72,7 @@ main {
 	padding: 15px 15px 55px;
 }
 
-nav > * {
+nav>* {
 	--radius: 10px;
 	border-top-left-radius: var(--radius);
 	border-top-right-radius: var(--radius);
@@ -84,12 +84,12 @@ nav > * {
 	transition: all .25s;
 }
 
-nav > *:hover {
+nav>*:hover {
 	background-color: rgba(255, 255, 255, .2);
 }
 
-nav > *.selected,
-nav > *:active {
+nav>*.selected,
+nav>*:active {
 	background-color: white;
 	color: var(--theme-color);
 }
@@ -190,7 +190,7 @@ ul {
 	border-radius: 10px;
 	width: 250px;
 	margin: 5px;
-	background-color: rgba(100,0,0,.2);
+	background-color: rgba(100, 0, 0, .2);
 	padding: 20px 10px;
 }
 
@@ -257,11 +257,11 @@ ul {
 }
 
 .wordlist-nav-button:hover {
-	background-color: rgba(100,0,0,.8);
+	background-color: rgba(100, 0, 0, .8);
 }
 
 .wordlist-nav-button:active {
-	background-color: rgb(100,0,0);
+	background-color: rgb(100, 0, 0);
 }
 
 .wordlist-nav-button a {
@@ -363,10 +363,11 @@ input {
 }
 
 @font-face {
-	font-family: 'iconfont';  /* Project id 3355937 */
-	src: url('https://at.alicdn.com/t/font_3355937_aw67i184jg.woff2?t=1653089051849') format('woff2'),
-		 url('https://at.alicdn.com/t/font_3355937_aw67i184jg.woff?t=1653089051849') format('woff'),
-		 url('https://at.alicdn.com/t/font_3355937_aw67i184jg.ttf?t=1653089051849') format('truetype');
+	font-family: 'iconfont';
+	/* Project id 3355937 */
+	src: url('https://at.alicdn.com/t/font_3355937_e0k3xpyprdd.woff2?t=1654214795608') format('woff2'),
+		url('https://at.alicdn.com/t/font_3355937_e0k3xpyprdd.woff?t=1654214795608') format('woff'),
+		url('https://at.alicdn.com/t/font_3355937_e0k3xpyprdd.ttf?t=1654214795608') format('truetype');
 }
 
 
@@ -479,27 +480,13 @@ p:hover {
 	position: relative;
 }
 
-.quiz-submit-button {
-	margin-top: 50px;
-	padding: 5px 10px;
+.quiz-check-buttons {
+	margin-top: 40px;
+}
+
+.quiz-buttons {
+	margin-top: 25px 20px;
+	padding: 10px 10px;
 	box-sizing: border-box;
 	height: 42px;
 }
-
-.quiz-button {
-	position: absolute;
-	width: 10px;
-	height: 10px;
-	top: 0;
-	right: -10;
-	color: var(--theme-color);
-	background-color: transparent;
-	border: transparent;
-}
-
-@font-face {
-	font-family: 'iconfont';  /* Project id 3355937 */
-	src: url('//at.alicdn.com/t/font_3355937_lcdy58le2kf.woff2?t=1654118984486') format('woff2'),
-		 url('//at.alicdn.com/t/font_3355937_lcdy58le2kf.woff?t=1654118984486') format('woff'),
-		 url('//at.alicdn.com/t/font_3355937_lcdy58le2kf.ttf?t=1654118984486') format('truetype');
-  }

@@ -9,10 +9,13 @@ export default function Quiz() {
 					<h2>Question 1/1</h2>
 					<div className="quiz-box">
 						<p>A Word</p>
-						<button className="quiz-button" title="refresh the page"><span className="icon">&#xe65e;</span></button>
 						<label htmlFor="answer">Enter the definition:</label>
 						<input id="answer" type="text" name="answer" />
-						<input type="submit" className="quiz-submit-button" value="Check" />
+						<div className="quiz-check-buttons">
+							<input type="submit" className="quiz-buttons" value="Check" />
+							<input type="submit" className="quiz-buttons" value="Next Word" />
+							<input type="submit" className="quiz-buttons" value="Back to the wordlist" />
+						</div>
 					</div>
 				</div>
 			</div>
