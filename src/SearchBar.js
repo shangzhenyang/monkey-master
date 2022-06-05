@@ -39,7 +39,7 @@ function SearchBar({ data }) {
 				)}
 			</div>
 		</div>
-	)
+	);
 }
 
 export default SearchBar

@@ -400,18 +400,6 @@ input {
 	width: var(--size);
 }
 
-@keyframes loading {
-	0% {
-		transform: rotate(0deg);
-	}
-
-	100% {
-		transform: rotate(360deg);
-	}
-}
-
-/* from Alibaba */
-
 .icon {
 	font-size: 40px;
 	font-family: 'iconfont';
@@ -433,14 +421,115 @@ input {
 	display: none !important;
 }
 
-@font-face {
-	font-family: 'iconfont';
-	/* Project id 3355937 */
-	src: url('https://at.alicdn.com/t/font_3355937_e0k3xpyprdd.woff2?t=1654214795608') format('woff2'),
-		url('https://at.alicdn.com/t/font_3355937_e0k3xpyprdd.woff?t=1654214795608') format('woff'),
-		url('https://at.alicdn.com/t/font_3355937_e0k3xpyprdd.ttf?t=1654214795608') format('truetype');
+input:focus {
+	outline: none;
 }
 
+.data-result {
+	font-size: 18px;
+	background-color: white;
+	box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+.data-result .data-item {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	color: black;
+}
+
+.data-item p {
+	margin-bottom: 0;
+	margin-left: 10px;
+}
+
+p:hover {
+	color: white;
+}
+
+/* Quiz Section */
+
+.quiz {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 60vh;
+}
+
+.quiz h1 {
+	color: var(--theme-color);
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.quiz h2 {
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.quiz p {
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.quiz-box {
+	display: block;
+	border-radius: 25px;
+	padding: 20px;
+	max-width: 450px;
+	color: white;
+	background-color: var(--second-theme-color);
+
+}
+
+.quiz input {
+	box-sizing: border-box;
+	height: 42px;
+}
+
+.quiz-check-buttons {
+	margin-top: 55px;
+}
+
+.quiz-buttons {
+	display: block;
+	margin: 15px auto 0;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 10px;
+	padding: 10px 10px;
+	box-sizing: border-box;
+	height: 42px;
+	max-width: 450px;
+	width: 90%;
+}
+
+@font-face {
+	font-family: "iconfont";
+	/* Project id 3355937 */
+	src: url("https://at.alicdn.com/t/font_3355937_e0k3xpyprdd.woff2?t=1654214795608") format("woff2"),
+		url("https://at.alicdn.com/t/font_3355937_e0k3xpyprdd.woff?t=1654214795608") format("woff"),
+		url("https://at.alicdn.com/t/font_3355937_e0k3xpyprdd.ttf?t=1654214795608") format("truetype");
+}
+
+@keyframes loading {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
 
 @media (min-width: 800px) {
 	.banana-card {
@@ -474,98 +563,4 @@ input {
 		width: 1500px;
 		margin: 30px auto;
 	}
-}
-
-input:focus {
-	outline: none;
-}
-
-.data-result {
-	font-size: 18px;
-	background-color: white;
-	box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
-	overflow: hidden;
-	overflow-y: auto;
-}
-
-.data-result .data-item {
-	width: 100%;
-	height: 50px;
-	display: flex;
-	align-items: center;
-	color: black;
-}
-
-.data-item p {
-	margin-bottom: 0;
-	margin-left: 10px;
-}
-
-p:hover {
-	color: white;
-}
-
-
-/* Quiz Section */
-.quiz {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 60vh;
-}
-
-.quiz h1 {
-	color: var(--theme-color);
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.quiz h2 {
-	margin: 0;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.quiz p {
-	width: 100%;
-	font-size: 20px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-}
-
-.quiz-box {
-	display: block;
-	width: 450px;
-	border-radius: 25px;
-	padding: 20px;
-	width: 450px;
-	color: white;
-	background-color: var(--second-theme-color);
-	position: relative;
-}
-
-.quiz input {
-	box-sizing: border-box;
-	height: 42px;
-}
-
-.quiz-check-buttons {
-	margin-top: 55px;
-}
-
-.quiz-buttons {
-	margin-top: 15px;
-	border: 1px solid rgba(0, 0, 0, .2);
-	border-radius: 10px;
-	margin-top: 25px 20px;
-	padding: 10px 10px;
-	box-sizing: border-box;
-	height: 42px;
-	width: 100%;
 }

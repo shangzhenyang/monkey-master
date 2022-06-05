@@ -18,9 +18,7 @@ function WordCard(props) {
 		<div className="word">{props.definition}</div>
 
 		<span className="icon-card" title="Edit this card" onClick={props.onChange}>&#xe601;</span>
-
 		<span className="icon-card" title="Play pronunciation" onClick={playPronunciation}>&#xe8b8;</span>
-
 		<span className="icon-card" title="Delete the word" onClick={props.onDelete}>&#xe602;</span>
 	</div >
 }

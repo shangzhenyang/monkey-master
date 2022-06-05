@@ -3,6 +3,7 @@ function Status(props) {
 	for (const list of props.lists) {
 		count += list.words.length
 	}
+
 	let title
 	if (count < 10) {
 		title = "Little Monkey (Lv1)"
@@ -15,6 +16,7 @@ function Status(props) {
 	} else {
 		title = "Monkey Elder (Lv5)"
 	}
+
 	return <>
 		<h2>Status</h2>
 		<div className="status">You have added {count} words.<br />You are now <strong>{title}</strong>!</div>

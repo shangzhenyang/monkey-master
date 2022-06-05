@@ -241,13 +241,9 @@ function WordList(props) {
 		<h2 className="wordlist-title" title="Change the title" onClick={changeTitle}>{list.title}</h2>
 		<ul className="wordlist-nav-row">
 			<li className="wordlist-nav-button" title="Add new words" onClick={scrollToBottom}><span className="icon">&#xe624;</span></li>
-
 			<li className="wordlist-nav-button" title="Test your knowledge"><Link to={`/quiz/${index}`}><span className="icon">&#xe62f;</span></Link></li>
-
 			<li className="wordlist-nav-button" title="Import as CSV" onClick={showCsvContextMenu}><span className="icon">&#xe641;</span></li>
-
 			<li className="wordlist-nav-button" title="Export as CSV" onClick={exportCsv}><span className="icon">&#xe642;</span></li>
-
 			<li className="wordlist-nav-button" title="Delete this list" onClick={deleteList}><span className="icon">&#xe603;</span></li>
 		</ul>
 
