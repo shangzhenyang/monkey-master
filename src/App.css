@@ -351,7 +351,7 @@ input {
 .mask {
 	align-items: center;
 	backdrop-filter: blur(5px);
-	background-color: rgba(0,0,0,.5);
+	background-color: rgba(0, 0, 0, .5);
 	display: flex;
 	height: 100%;
 	justify-content: center;
@@ -364,15 +364,15 @@ input {
 .context-menu {
 	background-color: white;
 	border-radius: 10px;
-	box-shadow: 0 0 5px rgba(0,0,0,.5);
-	color: rgba(0,0,0,.8);
+	box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+	color: rgba(0, 0, 0, .8);
 	font-size: 14px;
 	padding: 10px;
 	position: fixed;
 	white-space: nowrap;
 }
 
-.context-menu > div {
+.context-menu>div {
 	border-radius: 5px;
 	line-height: 20px;
 	padding: 7.5px 10px;
@@ -380,14 +380,14 @@ input {
 	white-space: nowrap;
 }
 
-.context-menu > div:focus,
-.context-menu > div:hover {
+.context-menu>div:focus,
+.context-menu>div:hover {
 	background-color: var(--theme-color);
 	color: white;
 }
 
-.context-menu > div:active {
-	color: rgba(255,255,255,.5);
+.context-menu>div:active {
+	color: rgba(255, 255, 255, .5);
 }
 
 .loading {
@@ -533,10 +533,10 @@ p:hover {
 .quiz p {
 	width: 100%;
 	font-size: 20px;
-	height: 50px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
 }
 
 .quiz-box {
@@ -544,14 +544,13 @@ p:hover {
 	width: 450px;
 	border-radius: 25px;
 	padding: 20px;
-	height: 190px;
 	width: 450px;
 	color: white;
 	background-color: var(--second-theme-color);
 	position: relative;
 }
 
-.quiz input{
+.quiz input {
 	box-sizing: border-box;
 	height: 42px;
 }
@@ -561,8 +560,12 @@ p:hover {
 }
 
 .quiz-buttons {
+	margin-top: 15px;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 10px;
 	margin-top: 25px 20px;
 	padding: 10px 10px;
 	box-sizing: border-box;
 	height: 42px;
+	width: 100%;
 }

@@ -8,6 +8,20 @@ function Prompt({
 	setValue,
 	value
 }) {
+	const onChange = event => {
+		setValue(event.target.value);
+	};
+
+	const onClick = () => {
+		positiveCallback(value);
+	};
+
+	const onKeyDown = event => {
+		if (event.code === "Enter") {
+			positiveCallback(value);
+		}
+	};
+
 	return <Modal
 		show={isShown}
 		onHide={negativeCallback}
@@ -21,21 +35,13 @@ function Prompt({
 			<input id="prompt-input"
 				value={value}
 				autoComplete="off"
-				onChange={event => {
-					setValue(event.target.value);
-				}}
-				onKeyDown={event => {
-					if (event.code === "Enter") {
-						positiveCallback(value);
-					}
-				}}
+				onChange={onChange}
+				onKeyDown={onKeyDown}
 			/>
 		</Modal.Body>
 		<Modal.Footer>
 			<Button variant="secondary" onClick={negativeCallback}>Cancel</Button>
-			<Button variant="primary" onClick={() => {
-				positiveCallback(value);
-			}}>OK</Button>
+			<Button variant="primary" onClick={onClick}>OK</Button>
 		</Modal.Footer>
 	</Modal>
 }
