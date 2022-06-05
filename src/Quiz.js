@@ -41,7 +41,7 @@ export default function Quiz(props) {
 
 	//Final Score
 
-
+//
 
 
 	return (
@@ -55,13 +55,9 @@ export default function Quiz(props) {
 						<label htmlFor="answer">Enter the definition:</label>
 						<input id="answer" type="text" name="answer" />
 						<div className="quiz-check-buttons">
-							<div className='check-button'>
 								<Check />
-							</div>
-							<div className='two-button'>
 								<NextWord />
 								<BackWordList />
-							</div>
 						</div>
 					</div>
 				</div>

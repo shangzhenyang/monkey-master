@@ -551,13 +551,6 @@ p:hover {
 	position: relative;
 }
 
-.two-button{
-	margin-top: 20px;
-}
-.check-button{
-	margin-top: -20px;
-	margin-bottom: 30px;
-}
 .quiz input{
 	box-sizing: border-box;
 	height: 42px;
