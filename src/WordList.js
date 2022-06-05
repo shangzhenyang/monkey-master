@@ -127,7 +127,7 @@ function WordList(props) {
 			for (const key in columnSplit) {
 				const column = columnSplit[key];
 				columnSplit[key] = column
-					.replace(/^\"|(\"(\s+)?)$/g, "")
+					.replace(/^"|("(\s+)?)$/g, "")
 					.replaceAll(`""`, `"`);
 			}
 			addWord(columnSplit[0], columnSplit[1], false);
@@ -270,10 +270,8 @@ function WordList(props) {
 	return <main>
 		<SearchBar data={list.words} />
 		<h2 className="wordlist-title" title="Change the title" onClick={changeTitle}>{list.title}</h2>
-		<ul className="wordlist-nav-row">{wordListButtons}</ul>
-
+		<div className="wordlist-nav-row">{wordListButtons}</div>
 		<div>{wordCards}</div>
-
 		<AddWord addWordCallBack={addWord} />
 
 		<Alert

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function WordListButton(props) {
 	const { icon, link, onClick, title } = props.item;
-	return <li
+	return <span
 		className="wordlist-button"
 		role="button"
 		tabIndex="0"
@@ -11,7 +11,7 @@ function WordListButton(props) {
 		{link ? <Link to={link}>
 			<span className="icon">{icon}</span>
 		</Link> : <span className="icon">{icon}</span>}
-	</li>
+	</span>
 }
 
 export default WordListButton;
