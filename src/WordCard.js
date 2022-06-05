@@ -1,3 +1,5 @@
+import WordCardButton from "./WordCardButton";
+
 function WordCard(props) {
 	const playPronunciation = () => {
 		if (window.speechSynthesis) {
@@ -13,14 +15,31 @@ function WordCard(props) {
 		}
 	}
 
+	const buttons = [{
+		icon: "\ue601",
+		onClick: props.onChange,
+		title: "Edit the word"
+	}, {
+		icon: "\ue8b8",
+		onClick: playPronunciation,
+		title: "Play pronunciation of"
+	}, {
+		icon: "\ue602",
+		onClick: props.onDelete,
+		title: "Delete the word"
+	}].map((item, index) =>
+		<WordCardButton
+			item={item}
+			key={index}
+			word={props.word}
+		/>
+	);
+
 	return <div className="word-card">
 		<div className="word">{props.word}</div>
 		<div className="word">{props.definition}</div>
-
-		<span className="icon-card" title="Edit this card" onClick={props.onChange}>&#xe601;</span>
-		<span className="icon-card" title="Play pronunciation" onClick={playPronunciation}>&#xe8b8;</span>
-		<span className="icon-card" title="Delete the word" onClick={props.onDelete}>&#xe602;</span>
-	</div >
+		{buttons}
+	</div>
 }
 
 export default WordCard

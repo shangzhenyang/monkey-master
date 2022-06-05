@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link, Navigate, useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import AddWord from "./AddWord"
 import Alert from "./Alert"
 import ContextMenu from "./ContextMenu"
@@ -7,6 +7,7 @@ import Loading from "./Loading"
 import Prompt from "./Prompt"
 import WordCard from "./WordCard"
 import SearchBar from "./SearchBar"
+import WordListButtons from "./WordListButton"
 
 function WordList(props) {
 	const { index } = useParams()
@@ -157,7 +158,10 @@ function WordList(props) {
 	};
 
 	const loadCsvFromUrl = async () => {
-		let url = await prompt("Please enter the URL to a CSV file.", "https://tmp.yangshangzhen.com/genki-ch12.csv");
+		let url = await prompt(
+			"Please enter the URL to a CSV file.",
+			"https://tmp.yangshangzhen.com/genki-ch12.csv"
+		);
 		closePrompt();
 		if (!url) {
 			alert("You did not enter anything.");
@@ -206,6 +210,33 @@ function WordList(props) {
 		})
 	};
 
+	const wordListButtons = [{
+		icon: "\ue624",
+		onClick: scrollToBottom,
+		title: "Add new words"
+	}, {
+		icon: "\ue62f",
+		link: `/quiz/${index}`,
+		title: "Test your knowledge"
+	}, {
+		icon: "\ue641",
+		onClick: showCsvContextMenu,
+		title: "Import as CSV"
+	}, {
+		icon: "\ue642",
+		onClick: exportCsv,
+		title: "Export as CSV"
+	}, {
+		icon: "\ue603",
+		onClick: deleteList,
+		title: "Delete this list"
+	}].map((item, index) =>
+		<WordListButtons
+			item={item}
+			key={index}
+		/>
+	);
+
 	const wordCards = list.words.map((item, index) =>
 		<WordCard
 			key={index}
@@ -239,15 +270,9 @@ function WordList(props) {
 	return <main>
 		<SearchBar data={list.words} />
 		<h2 className="wordlist-title" title="Change the title" onClick={changeTitle}>{list.title}</h2>
-		<ul className="wordlist-nav-row">
-			<li className="wordlist-nav-button" title="Add new words" onClick={scrollToBottom}><span className="icon">&#xe624;</span></li>
-			<li className="wordlist-nav-button" title="Test your knowledge"><Link to={`/quiz/${index}`}><span className="icon">&#xe62f;</span></Link></li>
-			<li className="wordlist-nav-button" title="Import as CSV" onClick={showCsvContextMenu}><span className="icon">&#xe641;</span></li>
-			<li className="wordlist-nav-button" title="Export as CSV" onClick={exportCsv}><span className="icon">&#xe642;</span></li>
-			<li className="wordlist-nav-button" title="Delete this list" onClick={deleteList}><span className="icon">&#xe603;</span></li>
-		</ul>
+		<ul className="wordlist-nav-row">{wordListButtons}</ul>
 
-		{wordCards}
+		<div>{wordCards}</div>
 
 		<AddWord addWordCallBack={addWord} />
 

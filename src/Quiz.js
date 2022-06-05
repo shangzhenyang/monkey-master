@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Link, Navigate, useParams } from "react-router-dom"
+import { Link, Navigate, useParams } from "react-router-dom";
 import Alert from './Alert';
 
-export default function Quiz(props) {
+function Quiz(props) {
 	const { index } = useParams();
 	const list = props.lists[index];
 	const [goBack, setGoBack] = useState(false);
@@ -107,3 +107,5 @@ export default function Quiz(props) {
 		</main>
 	);
 }
+
+export default Quiz;

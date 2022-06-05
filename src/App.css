@@ -250,7 +250,7 @@ ul {
 	cursor: pointer;
 }
 
-.wordlist-nav-button {
+.wordlist-button {
 	height: 80px;
 	display: inline-block;
 	background-color: var(--second-theme-color);
@@ -263,21 +263,21 @@ ul {
 	width: 80px;
 }
 
-.wordlist-nav-button:hover {
+.wordlist-button:hover {
 	background-color: rgba(100, 0, 0, .8);
 }
 
-.wordlist-nav-button:active {
+.wordlist-button:active {
 	background-color: rgb(100, 0, 0);
 }
 
-.wordlist-nav-button a {
+.wordlist-button a {
 	height: inherit;
 	width: inherit;
 	display: block;
 }
 
-.wordlist-nav-button a:hover {
+.wordlist-button a:hover {
 	background-color: transparent;
 }
 
@@ -542,7 +542,7 @@ p:hover {
 		font-size: 20px;
 	}
 
-	.wordlist-nav-button {
+	.wordlist-button {
 		margin: 0 1rem;
 		width: 100px;
 	}
@@ -553,7 +553,7 @@ p:hover {
 }
 
 @media (min-width: 1200px) {
-	.wordlist-nav-button {
+	.wordlist-button {
 		margin: 0 4rem;
 	}
 }

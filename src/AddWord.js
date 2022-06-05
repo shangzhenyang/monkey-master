@@ -1,4 +1,5 @@
 import { useState } from "react"
+
 function AddWord(props) {
 	const [inputtedWord, setInputtedWord] = useState("")
 	const [inputtedDef, setInputtedDef] = useState("")
